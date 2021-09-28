@@ -37,7 +37,8 @@ public class PlayerPhysics : MonoBehaviour
         if (!Grounded)
             return;
 
-        _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+        //_rigidbody.AddForce(Vector2.up * _jumpForce , ForceMode2D.Impulse);
+        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
     }
 
     public void SetActive(bool value)

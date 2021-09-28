@@ -209,7 +209,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  _groundOverlapRadius: 0.5
+  _groundOverlapRadius: 0.1
   _groundPoint: {fileID: 8614637491780288862}
 --- !u!114 &3251392408897984175
 MonoBehaviour:
@@ -228,7 +228,7 @@ MonoBehaviour:
   _interface: {fileID: 0}
   _maxHealth: 100
   _damage: 10
-  _jumpForce: 10
+  _jumpForce: 5
   _maxSpeed: 5
   _acceleration: 0.2
 --- !u!1 &2898049213750193054

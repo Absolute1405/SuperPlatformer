@@ -47,12 +47,21 @@ public class Player : MonoBehaviour
 
     public void Move(float input)
     {
-        _directedRight = input >= 0;
-
-        _animations.SetFlip(_directedRight == false);
         _animations.Move(Mathf.Approximately(input,0) == false);
 
         _physics.Move(input);
+
+        if (input < 0)
+        {
+            _directedRight = false;
+        }
+        else if (input > 0)
+        {
+            _directedRight = true;
+        }
+
+        _animations.SetFlip(_directedRight == false);
+
     }
 
     public void TakeDamage(int damage)
