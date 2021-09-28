@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap : MonoBehaviour
+public abstract class Trap : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField, Min(0)] private int _damage;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int Damage => _damage;
+
+    public abstract void Initialize();
+
+    public abstract void Hit(Health target);
 }
