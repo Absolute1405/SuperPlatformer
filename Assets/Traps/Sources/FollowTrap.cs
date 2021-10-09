@@ -11,12 +11,12 @@ public class FollowTrap : Trap, IFollowTrap
         throw new System.NotImplementedException();
     }
 
-    public override void Hit(Health target)
+    public override void Hit(IDamageable target)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void Initalie()
+    public override void Initialize()
     {
         throw new System.NotImplementedException();
     }

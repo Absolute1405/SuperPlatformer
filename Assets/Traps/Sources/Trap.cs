@@ -8,7 +8,7 @@ public abstract class Trap : MonoBehaviour
 
     public int Damage => _damage;
 
-    public abstract void Initalie();
+    public abstract void Initialize();
 
-    public abstract void Hit(Health target);
+    public abstract void Hit(IDamageable target);
 }

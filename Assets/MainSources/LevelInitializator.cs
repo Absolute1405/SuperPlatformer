@@ -7,6 +7,7 @@ public class LevelInitializator : MonoBehaviour
     [SerializeField] private Player _playerPrefab;
     [SerializeField] private Transform _startPoint;
     [SerializeField] private InputController _input;
+    [SerializeField] private PlayerConfig _playerConfig;
 
     private Player _player;
 
@@ -16,7 +17,7 @@ public class LevelInitializator : MonoBehaviour
         _trapContainer.Initialize();
 
         _player = Instantiate(_playerPrefab);
-        _player.Init(_startPoint.position);
+        _player.Init(_startPoint.position, _playerConfig);
         _input.SetPlayer(_player);
     }
 }

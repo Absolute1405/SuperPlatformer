@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class SpikeTrap : Trap, ITimerTrap
 {
-    private Health _target;
+    private IDamageable _target;
 
     public float Timer { get; private set; }
 
-    public override void Hit(Health target)
+    public override void Hit(IDamageable target)
     {
         target.TakeDamage(Damage);
     }
 
-    public override void Initalie()
+    public override void Initialize()
     {
         StartCoroutine(WaitAndHit());
 
@@ -35,7 +35,7 @@ public class SpikeTrap : Trap, ITimerTrap
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        other.TryGetComponent<Health>(out var target);
+        other.TryGetComponent<IDamageable>(out var target);
         _target = target;
     }
 }
