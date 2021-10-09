@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class SpikeTrap : Trap, ITimerTrap
 {
+    [SerializeField] private SpikeTrapConfig _config;
     private IDamageable _target;
 
     public float Timer { get; private set; }
 
-    public override void Hit(IDamageable target)
-    {
-        target.TakeDamage(Damage);
-    }
+    
 
     public override void Initialize()
     {
+        Timer = _config.Timer;
+        Damage = _config.Damage;
         StartCoroutine(WaitAndHit());
 
     }

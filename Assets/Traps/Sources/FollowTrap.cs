@@ -11,10 +11,7 @@ public class FollowTrap : Trap, IFollowTrap
         throw new System.NotImplementedException();
     }
 
-    public override void Hit(IDamageable target)
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
     public override void Initialize()
     {

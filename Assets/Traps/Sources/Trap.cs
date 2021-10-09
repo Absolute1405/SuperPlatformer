@@ -4,11 +4,13 @@ using UnityEngine;
 
 public abstract class Trap : MonoBehaviour
 {
-    [SerializeField, Min(0)] private int _damage;
 
-    public int Damage => _damage;
+    public int Damage { get; protected set; }
 
     public abstract void Initialize();
 
-    public abstract void Hit(IDamageable target);
+    protected virtual void Hit(IDamageable target)
+    {
+        target.TakeDamage(Damage);
+    }
 }
