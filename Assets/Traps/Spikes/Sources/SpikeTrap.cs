@@ -6,6 +6,7 @@ using UnityEngine;
 public class SpikeTrap : Trap, ITimerTrap
 {
     [SerializeField] private SpikeTrapConfig _config;
+    [SerializeField] private SpikesAnimation _animation;
     private IDamageable _target;
 
     public float Timer { get; private set; }
@@ -25,6 +26,8 @@ public class SpikeTrap : Trap, ITimerTrap
         while (true)
         {
             yield return new WaitForSeconds(Timer);
+            _animation.Activate();
+            Debug.Log("spikes activated");
 
             if (_target is null == false)
             {
@@ -33,9 +36,18 @@ public class SpikeTrap : Trap, ITimerTrap
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         other.TryGetComponent<IDamageable>(out var target);
+        Debug.Log(other.gameObject.name + " exit");
+        _target = null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        other.TryGetComponent<IDamageable>(out var target);
+        Debug.Log(other.gameObject.name + " entry");
+
         _target = target;
     }
 }

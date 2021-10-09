@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TrapContainer : MonoBehaviour
 {
-    private List<Trap> _traps;
+    private List<Trap> _traps = new List<Trap>();
 
     public void Initialize()
     {
@@ -13,6 +13,11 @@ public class TrapContainer : MonoBehaviour
             return;
 
         _traps.AddRange(traps);
+
+        foreach (var trap in _traps)
+        {
+            trap.Initialize();
+        }
 
     }
 }

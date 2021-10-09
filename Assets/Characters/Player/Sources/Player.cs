@@ -71,6 +71,7 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         _health.TakeDamage(damage);
+        Debug.Log(damage);
     }
 
     private void FixedUpdate()
