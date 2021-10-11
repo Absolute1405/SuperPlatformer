@@ -13,4 +13,6 @@ public abstract class Trap : MonoBehaviour
     {
         target.TakeDamage(Damage);
     }
+
+    
 }
