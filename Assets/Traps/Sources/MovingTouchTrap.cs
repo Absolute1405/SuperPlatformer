@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PendulumTrap : Trap
+public class MovingTouchTrap : Trap
 {
     [SerializeField] private TrapTouchCollider _collision;
 
