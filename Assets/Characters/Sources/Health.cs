@@ -16,6 +16,7 @@ public class Health
             throw new ArgumentOutOfRangeException(nameof(maxValue));
 
         _maxValue = maxValue;
+        Value = _maxValue;
     }
 
     public void TakeDamage(int damage)

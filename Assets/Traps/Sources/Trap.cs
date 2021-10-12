@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Trap : MonoBehaviour
+public class Trap : MonoBehaviour
 {
-
+    public const int DefaultDamage = 5;
     public int Damage { get; protected set; }
 
-    public abstract void Initialize();
+    public virtual void Initialize()
+    {
+        Damage = DefaultDamage;
+    }
 
     protected virtual void Hit(IDamageable target)
     {
