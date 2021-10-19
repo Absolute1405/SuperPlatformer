@@ -20,6 +20,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private Vector3 _startPosition;
 
+    public event Action<int> HealthChanged ;
+
     public void Init(Vector3 startPosition, PlayerConfig config)
     {
         _maxHealth = config.MaxHealth;
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour, IDamageable
         _acceleration = config.Acceleration;
 
         _health = new Health(_maxHealth);
+        
         _health.Death += () => _physics.SetActive(false);
         _health.Death += _animations.Death;
 
@@ -41,6 +44,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Restart()
     {
+        HealthChanged?.Invoke(_health.Value);
         _health.SetFull();
         transform.position = _startPosition;
     }
@@ -72,7 +76,8 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         _health.TakeDamage(damage);
-        Debug.Log(_health.Value);
+        
+        HealthChanged?.Invoke(_health.Value);
     }
 
     private void FixedUpdate()
