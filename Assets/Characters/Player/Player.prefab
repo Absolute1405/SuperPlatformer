@@ -108,7 +108,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -696268963
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 84ce2f114ad12bd4ebafc77060220324, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -188,7 +188,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -226,11 +226,6 @@ MonoBehaviour:
   _physics: {fileID: 381685710468267861}
   _animations: {fileID: 3270680751264536662}
   _interface: {fileID: 0}
-  _maxHealth: 100
-  _damage: 10
-  _jumpForce: 5
-  _maxSpeed: 5
-  _acceleration: 0.2
 --- !u!1 &2898049213750193054
 GameObject:
   m_ObjectHideFlags: 0

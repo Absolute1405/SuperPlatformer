@@ -36,6 +36,7 @@ public class Player : MonoBehaviour, IDamageable
 
         _startPosition = startPosition;
         _directedRight = true;
+        
     }
 
     public void Restart()

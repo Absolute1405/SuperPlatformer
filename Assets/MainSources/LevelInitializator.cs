@@ -20,4 +20,8 @@ public class LevelInitializator : MonoBehaviour
         _player.Init(_startPoint.position, _playerConfig);
         _input.SetPlayer(_player);
     }
+    private void Start()
+    {
+        _player.Restart();
+    }
 }
