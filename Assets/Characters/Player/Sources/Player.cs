@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private Vector3 _startPosition;
 
-    public event Action<int> HealthChanged ;
+    public event Action<int> HealthChanged;
 
     public void Init(Vector3 startPosition, PlayerConfig config)
     {

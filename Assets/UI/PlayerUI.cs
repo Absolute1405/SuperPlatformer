@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerUI : MonoBehaviour
 {
-    [SerializeField] private Healthbar _healthbar;
-    public Healthbar Healthbar => _healthbar;
-    private void Initialize ()
+    [SerializeField] private StatBar _healthBar;
+    public StatBar HealthBar => _healthBar;
+
+    public void Initialize(PlayerConfig config)
     {
-        
+        _healthBar.Initialize(config.MaxHealth);
     }
 }

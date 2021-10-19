@@ -16,13 +16,14 @@ public class LevelInitializator : MonoBehaviour
     private void Awake()
     {
         _UI = Instantiate(_UIPrefab);
+        _UI.Initialize(_playerConfig);
         
         _enemyContainer.Initialize();
         _trapContainer.Initialize();
 
         _player = Instantiate(_playerPrefab);
         _player.Init(_startPoint.position, _playerConfig);
-        //_UI.Healthbar.RefreshBar();
+        _player.HealthChanged += _UI.HealthBar.RefreshBar;
         _input.SetPlayer(_player);
     }
     private void Start()
