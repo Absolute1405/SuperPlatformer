@@ -1,17 +1,20 @@
+using System;
 using Platformer.Characters;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Platformer.UI
+[RequireComponent(typeof(Slider))]
+public class Healthbar : MonoBehaviour
 {
-    public class Healthbar : MonoBehaviour
-    {
-        [SerializeField] private Image _bar;
-        [SerializeField] private Health _health;
+    private Slider _bar;
 
-        public void RefreshBar()
-        {
-            _bar.fillAmount = (float) _health.Value / _health.MaxValue;
-        }
+    private void Awake()
+    {
+        _bar = GetComponent<Slider>();
+    }
+
+    public void RefreshBar(int health, int maxHealth)
+    {
+        _bar.value = (float)health / maxHealth;
     }
 }
