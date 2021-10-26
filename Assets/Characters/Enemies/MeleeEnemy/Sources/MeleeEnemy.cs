@@ -1,35 +1,20 @@
+using System.Collections;
 using UnityEngine;
 
-namespace Platformer.Characters.Enemy.MeleeEnemy
+public class MeleeEnemy : Enemy
 {
-    public class MeleeEnemy : MonoBehaviour
+    public override void Initialize(EnemyConfig config)
     {
-        [SerializeField] private MeleeEnemyAttack _attack;
-        [SerializeField] private EnemyBoundXMovement _movement;
-        [SerializeField] private MeleeEnemyAnimator _animator;
-        [SerializeField] private Health _health;
+        base.Initialize(config);
+        BanditConfig banditConfig = config as BanditConfig;
+    }
 
-        public bool DirectedRight { get; private set; }
-
-        private void Awake()
+    protected override IEnumerator LifeCycle()
+    {
+        while (true)
         {
-            Init();
+            yield return new WaitForSeconds(1f);
+            
         }
-
-        public void Init()
-        {
-            DirectedRight = true;
-            Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-            _movement.Init(rigidbody);
-            _animator.Run(true);
-            _health.SetFull();
-        }
-
-        public void Flip()
-        {
-            DirectedRight = !DirectedRight;
-            _animator.DirectToRight(DirectedRight);
-        }
-
     }
 }
