@@ -1,19 +1,21 @@
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour, IDamageable,IDamagStamin
 {
     [Header("Components")]
     [SerializeField] private PlayerPhysics _physics;
     [SerializeField] private PlayerAnimator _animations;
     [SerializeField] private PlayerStatsUI _interface;
 
+    private int _maxStamina = 100;
     private int _maxHealth = 100;
     private int _damage = 10;
     private float _jumpForce = 20f;
     private float _maxSpeed = 5f;
     private float _acceleration = 0.2f;
 
+    private int _Stamina;
     private Health _health;
     private PlayerAttack _attack;
     private bool _directedRight;
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour, IDamageable
         _jumpForce = config.JumpForce;
         _maxSpeed = config.MaxSpeed;
         _acceleration = config.Acceleration;
+        _maxStamina = config.Stamin;
 
         _health = new Health(_maxHealth);
         
@@ -72,6 +75,7 @@ public class Player : MonoBehaviour, IDamageable
         _animations.SetFlip(_directedRight == false);
 
     }
+    
 
     public void TakeDamage(int damage)
     {
@@ -83,6 +87,11 @@ public class Player : MonoBehaviour, IDamageable
     private void FixedUpdate()
     {
         _animations.SetGrounded(_physics.Grounded);
+    }
+
+    public void TakeStaminDamage(int Stamindamage)
+    {
+        _Stamina-= Stamindamage
     }
 }
 

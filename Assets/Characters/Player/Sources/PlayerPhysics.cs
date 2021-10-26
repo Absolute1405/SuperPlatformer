@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerPhysics : MonoBehaviour
+public class PlayerPhysics : MonoBehaviour,IDamagStamin
 {
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _groundOverlapRadius = 0.5f;
@@ -39,6 +39,7 @@ public class PlayerPhysics : MonoBehaviour
 
         //_rigidbody.AddForce(Vector2.up * _jumpForce , ForceMode2D.Impulse);
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
+        
     }
 
     public void SetActive(bool value)
@@ -66,5 +67,10 @@ public class PlayerPhysics : MonoBehaviour
         Grounded = Physics2D.OverlapCircle(_groundPoint.position, _groundOverlapRadius, _groundLayer) != null;
         _rigidbody.velocity = new Vector2(_velocityX, _rigidbody.velocity.y);
         _velocityX = Mathf.Lerp(_velocityX, 0, 1 / _groundProps.Slip);
+    }
+
+    public void TakeStaminDamage(int Stamindamage)
+    {
+        throw new NotImplementedException();
     }
 }

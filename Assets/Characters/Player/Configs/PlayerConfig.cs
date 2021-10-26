@@ -4,6 +4,7 @@
 public class PlayerConfig : ScriptableObject
 {
     [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private int _maxStamina = 100;
     [SerializeField] private int _damage = 10;
     [SerializeField] private float _jumpForce = 20f;
     [SerializeField] private float _maxSpeed = 5f;
@@ -11,7 +12,9 @@ public class PlayerConfig : ScriptableObject
 
     public int MaxHealth => _maxHealth;
     public int Damage => _damage;
+    public int Stamin => _maxStamina;
     public float JumpForce => _jumpForce;
     public float MaxSpeed => _maxSpeed;
     public float Acceleration => _acceleration;
+    
 }
