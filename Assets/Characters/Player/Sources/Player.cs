@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Player : MonoBehaviour, IDamageable,IDamagStamin
+public class Player : MonoBehaviour, IDamageable
 {
     [Header("Components")]
     [SerializeField] private PlayerPhysics _physics;
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour, IDamageable,IDamagStamin
     private Vector3 _startPosition;
 
     public event Action<int> HealthChanged;
+    
 
     public void Init(Vector3 startPosition, PlayerConfig config)
     {
@@ -89,9 +91,9 @@ public class Player : MonoBehaviour, IDamageable,IDamagStamin
         _animations.SetGrounded(_physics.Grounded);
     }
 
-    public void TakeStaminDamage(int Stamindamage)
+    public void StaminDamage()
     {
-        _Stamina-= Stamindamage
+        _Stamina -= 10;
     }
 }
 

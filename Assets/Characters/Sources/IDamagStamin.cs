@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDamagStamin 
 {
-    void TakeStaminDamage(int Stamindamage);
+    
 }

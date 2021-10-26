@@ -1,8 +1,9 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerPhysics : MonoBehaviour,IDamagStamin
+public class PlayerPhysics : MonoBehaviour
 {
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _groundOverlapRadius = 0.5f;
@@ -17,6 +18,7 @@ public class PlayerPhysics : MonoBehaviour,IDamagStamin
     private float _acceleration;
 
     public bool Grounded { get; private set; }
+    public UnityEvent StaminDamag;
 
     public void Initialize(float jumpForce, float maxSpeed, float acceleration)
     {
@@ -36,7 +38,7 @@ public class PlayerPhysics : MonoBehaviour,IDamagStamin
     {
         if (!Grounded)
             return;
-
+        
         //_rigidbody.AddForce(Vector2.up * _jumpForce , ForceMode2D.Impulse);
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
         
@@ -69,8 +71,5 @@ public class PlayerPhysics : MonoBehaviour,IDamagStamin
         _velocityX = Mathf.Lerp(_velocityX, 0, 1 / _groundProps.Slip);
     }
 
-    public void TakeStaminDamage(int Stamindamage)
-    {
-        throw new NotImplementedException();
-    }
+    
 }
