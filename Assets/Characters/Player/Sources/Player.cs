@@ -10,6 +10,8 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private PlayerStatsUI _interface;
 
     private int _maxStamina = 100;
+    private int _maxSleep=4;
+    private int _Sleep;
     private int _maxHealth = 100;
     private int _damage = 10;
     private float _jumpForce = 20f;
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour, IDamageable
         _maxSpeed = config.MaxSpeed;
         _acceleration = config.Acceleration;
         _maxStamina = config.Stamin;
+        _maxSleep = _Sleep;
 
         _health = new Health(_maxHealth);
         
@@ -93,7 +96,19 @@ public class Player : MonoBehaviour, IDamageable
 
     public void StaminDamage()
     {
-        _Stamina -= 10;
+        if (_Stamina != 0)
+        {
+            _Stamina -= 10;
+        }
+        if(_Stamina == 0)
+        {
+            if (_Sleep!=0)
+            {
+                _Sleep -= 1;
+                
+                
+            }
+        }
     }
 }
 
