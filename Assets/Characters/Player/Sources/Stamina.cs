@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Stamina 
+public class Stamina : IPlayerStamina
 {
     private readonly int _maxValue;
     

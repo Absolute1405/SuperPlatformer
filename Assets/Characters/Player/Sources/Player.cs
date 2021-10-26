@@ -11,15 +11,14 @@ public class Player : MonoBehaviour, IDamageable
 
     private int _maxStamina = 100;
     private int _maxSleep=4;
-    private int _Sleep;
     private int _maxHealth = 100;
     private int _damage = 10;
     private float _jumpForce = 20f;
     private float _maxSpeed = 5f;
     private float _acceleration = 0.2f;
 
-    private int _Stamina;
     private Health _health;
+    private Stamina _stamina;
     private PlayerAttack _attack;
     private bool _directedRight;
 
@@ -27,7 +26,6 @@ public class Player : MonoBehaviour, IDamageable
 
     public event Action<int> HealthChanged;
     
-
     public void Init(Vector3 startPosition, PlayerConfig config)
     {
         _maxHealth = config.MaxHealth;
@@ -36,7 +34,6 @@ public class Player : MonoBehaviour, IDamageable
         _maxSpeed = config.MaxSpeed;
         _acceleration = config.Acceleration;
         _maxStamina = config.Stamin;
-        _maxSleep = _Sleep;
 
         _health = new Health(_maxHealth);
         
@@ -47,7 +44,6 @@ public class Player : MonoBehaviour, IDamageable
 
         _startPosition = startPosition;
         _directedRight = true;
-        
     }
 
     public void Restart()
@@ -92,23 +88,6 @@ public class Player : MonoBehaviour, IDamageable
     private void FixedUpdate()
     {
         _animations.SetGrounded(_physics.Grounded);
-    }
-
-    public void StaminDamage()
-    {
-        if (_Stamina != 0)
-        {
-            _Stamina -= 10;
-        }
-        if(_Stamina == 0)
-        {
-            if (_Sleep!=0)
-            {
-                _Sleep -= 1;
-                
-                
-            }
-        }
     }
 }
 

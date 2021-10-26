@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1230683455288260334}
   - component: {fileID: 1230683455288260335}
-  - component: {fileID: 1230683455288260336}
   m_Layer: 0
   m_Name: UI Camera
   m_TagString: Untagged
@@ -75,14 +74,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1230683455288260336
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1230683455288260337}
-  m_Enabled: 1
 --- !u!1 &5016763055019052298
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +251,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerBars
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514956484356624817, guid: 09773b5d49aa51840b5aea4f4f38bcd2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514956484356624817, guid: 09773b5d49aa51840b5aea4f4f38bcd2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09773b5d49aa51840b5aea4f4f38bcd2, type: 3}

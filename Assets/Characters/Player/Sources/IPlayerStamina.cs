@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamagStamin 
+public interface IPlayerStamina
 {
-    
+    bool Decrease(int x);
 }
