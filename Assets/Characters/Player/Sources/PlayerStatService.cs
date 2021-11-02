@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class PlayerStatService
 {
+    private const int _damage = 5;
     private readonly Stamina _stamina;
     private readonly Health _health;
-    // add sleep class
+    private readonly Sleep _sleep;
 
     public PlayerStatService(Stamina stamina, Health health)
     {
@@ -23,8 +21,23 @@ public class PlayerStatService
 
     public void Action(int staminaRequired)
     {
-        // 1) check stamina
-        // 2) if stamina cant be decreased => fill stamina with sleep
-        // 3) if has no sleep points => decrease health
+        if (_stamina.Value <= 0)
+        {
+            if (_sleep.Value > 0)
+            {
+                _sleep.Decrease();
+                _stamina.SetFull();
+            }
+            else
+            {
+                _health.TakeDamage(_damage);
+            }
+            
+        }
+        else
+        {
+            _stamina.Decrease(staminaRequired);
+        }
+        
     }
 }

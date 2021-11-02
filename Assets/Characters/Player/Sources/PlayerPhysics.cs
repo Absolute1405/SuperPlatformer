@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
+
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerPhysics : MonoBehaviour
@@ -18,7 +18,7 @@ public class PlayerPhysics : MonoBehaviour
     private float _acceleration;
 
     public bool Grounded { get; private set; }
-    public UnityEvent StaminDamag;
+    
 
     public void Initialize(float jumpForce, float maxSpeed, float acceleration)
     {
@@ -39,7 +39,7 @@ public class PlayerPhysics : MonoBehaviour
         if (!Grounded)
             return;
         
-        //_rigidbody.AddForce(Vector2.up * _jumpForce , ForceMode2D.Impulse);
+       
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
         
     }

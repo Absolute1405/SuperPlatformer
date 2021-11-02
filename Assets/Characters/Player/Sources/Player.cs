@@ -8,6 +8,8 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private PlayerAnimator _animations;
     [SerializeField] private PlayerStatsUI _interface;
 
+    private const int _StaminDamage = 10;
+
     private int _maxStamina = 100;
     private int _maxSleep=4;
     private int _maxHealth = 100;
@@ -15,10 +17,13 @@ public class Player : MonoBehaviour, IDamageable
     private float _jumpForce = 20f;
     private float _maxSpeed = 5f;
     private float _acceleration = 0.2f;
+    
 
     private Health _health;
     private Stamina _stamina;
+    private Sleep _sleep;
     private PlayerAttack _attack;
+    private PlayerStatService _statService;
     private bool _directedRight;
 
     private Vector3 _startPosition;
@@ -34,7 +39,11 @@ public class Player : MonoBehaviour, IDamageable
         _acceleration = config.Acceleration;
         _maxStamina = config.Stamin;
 
+        _statService = new PlayerStatService(_stamina, _health);
         _health = new Health(_maxHealth);
+        _stamina = new Stamina(_maxStamina);
+        _sleep = new Sleep(config.MaxSleep);
+        
         
         _health.Death += () => _physics.SetActive(false);
         _health.Death += _animations.Death;
@@ -54,7 +63,9 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Jump()
     {
+
         _physics.Jump();
+        _statService.Action(_StaminDamage);
     }
 
     public void Move(float input)
