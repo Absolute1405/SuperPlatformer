@@ -1,9 +1,10 @@
 ﻿using System;
 
-public class Stamina : IPlayerStamina
+public class Stamina
 {
     private readonly int _maxValue;
-    
+
+    public event Action<int> ValueChanged;
     public int Value { get; protected set; }
     public Stamina (int maxValue)
     {
@@ -17,24 +18,18 @@ public class Stamina : IPlayerStamina
     public void SetFull()
     {
         Value = _maxValue;
+        ValueChanged?.Invoke(Value);
     }
 
-    public bool Decrease(int x)
+    public void Decrease(int x)
     {
-        if (x < 1)
+        if (Value < x)
         {
-            throw new ArgumentOutOfRangeException(nameof(x));
-        }
-
-        bool canAct = Value - x > 0;
-
-        if (!canAct)
-        {
-            return canAct;
+            Value = 0;
+            return;
         }
 
         Value -= x;
-
-        return canAct;
+        ValueChanged?.Invoke(Value);
     }
 }

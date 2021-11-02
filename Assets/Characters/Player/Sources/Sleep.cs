@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using System;
 
 public class Sleep 
 {
@@ -6,7 +6,8 @@ public class Sleep
 
     private int _maxValue;
     public int Value { get; protected set; }
-    
+    public event Action<int> ValueChanged;
+
     public Sleep(int maxSleep)
     {
         _maxValue = maxSleep;

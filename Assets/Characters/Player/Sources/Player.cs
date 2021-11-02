@@ -6,7 +6,6 @@ public class Player : MonoBehaviour, IDamageable
     [Header("Components")]
     [SerializeField] private PlayerPhysics _physics;
     [SerializeField] private PlayerAnimator _animations;
-    [SerializeField] private PlayerStatsUI _interface;
 
     private const int _StaminDamage = 10;
 
@@ -18,10 +17,7 @@ public class Player : MonoBehaviour, IDamageable
     private float _maxSpeed = 5f;
     private float _acceleration = 0.2f;
     
-
     private Health _health;
-    private Stamina _stamina;
-    private Sleep _sleep;
     private PlayerAttack _attack;
     private PlayerStatService _statService;
     private bool _directedRight;
@@ -29,7 +25,9 @@ public class Player : MonoBehaviour, IDamageable
     private Vector3 _startPosition;
 
     public event Action<int> HealthChanged;
-    
+    public event Action<int> StaminaChanged;
+    public event Action<int> SleepChanged;
+
     public void Init(Vector3 startPosition, PlayerConfig config)
     {
         _maxHealth = config.MaxHealth;
@@ -37,16 +35,20 @@ public class Player : MonoBehaviour, IDamageable
         _jumpForce = config.JumpForce;
         _maxSpeed = config.MaxSpeed;
         _acceleration = config.Acceleration;
-        _maxStamina = config.Stamin;
+        _maxStamina = config.MaxStamina;
 
-        _statService = new PlayerStatService(_stamina, _health);
         _health = new Health(_maxHealth);
-        _stamina = new Stamina(_maxStamina);
-        _sleep = new Sleep(config.MaxSleep);
-        
-        
         _health.Death += () => _physics.SetActive(false);
         _health.Death += _animations.Death;
+        _health.ValueChanged += (x) => HealthChanged?.Invoke(x);
+
+        var stamina = new Stamina(_maxStamina);
+        stamina.ValueChanged += (x) => StaminaChanged?.Invoke(x);
+
+        var sleep = new Sleep(config.MaxSleep);
+        sleep.ValueChanged += (x) => SleepChanged?.Invoke(x);
+
+        _statService = new PlayerStatService(stamina, _health, sleep);
 
         _physics.Initialize(_jumpForce, _maxSpeed, _acceleration);
 
@@ -63,7 +65,6 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Jump()
     {
-
         _physics.Jump();
         _statService.Action(_StaminDamage);
     }
@@ -91,8 +92,6 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         _health.TakeDamage(damage);
-        
-        HealthChanged?.Invoke(_health.Value);
     }
 
     private void FixedUpdate()

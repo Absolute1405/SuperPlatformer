@@ -7,7 +7,7 @@ public class PlayerStatService
     private readonly Health _health;
     private readonly Sleep _sleep;
 
-    public PlayerStatService(Stamina stamina, Health health)
+    public PlayerStatService(Stamina stamina, Health health, Sleep sleep)
     {
         if (stamina is null)
             throw new ArgumentNullException(nameof(stamina));
@@ -15,8 +15,12 @@ public class PlayerStatService
         if (health is null)
             throw new ArgumentNullException(nameof(health));
 
+        if (sleep is null)
+            throw new ArgumentNullException(nameof(sleep));
+
         _stamina = stamina;
         _health = health;
+        _sleep = sleep;
     }
 
     public void Action(int staminaRequired)
@@ -38,6 +42,5 @@ public class PlayerStatService
         {
             _stamina.Decrease(staminaRequired);
         }
-        
     }
 }

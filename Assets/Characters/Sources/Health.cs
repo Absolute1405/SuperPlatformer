@@ -9,6 +9,7 @@ public class Health
     private readonly int _maxValue;
 
     public int MaxValue => _maxValue;
+    public event Action<int> ValueChanged; 
 
     public Health(int maxValue)
     {
@@ -31,10 +32,13 @@ public class Health
             Death?.Invoke();
             Value = 0;
         }
+
+        ValueChanged?.Invoke(Value);
     }
 
     public void SetFull()
     {
         Value = _maxValue;
+        ValueChanged?.Invoke(Value);
     }
 }

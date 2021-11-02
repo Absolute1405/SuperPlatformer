@@ -13,7 +13,7 @@ public class PlayerConfig : ScriptableObject
 
     public int MaxHealth => _maxHealth;
     public int Damage => _damage;
-    public int Stamin => _maxStamina;
+    public int MaxStamina => _maxStamina;
     public float JumpForce => _jumpForce;
     public float MaxSpeed => _maxSpeed;
     public float Acceleration => _acceleration;
