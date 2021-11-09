@@ -36,11 +36,7 @@ public class PlayerPhysics : MonoBehaviour
 
     public void Jump()
     {
-        if (!Grounded)
-            return;
-        
-       
-        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
+       _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
         
     }
 

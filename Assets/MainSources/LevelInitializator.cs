@@ -22,12 +22,14 @@ public class LevelInitializator : MonoBehaviour
         _trapContainer.Initialize();
 
         _player = Instantiate(_playerPrefab);
+        _input.SpacePressed += _player.Jump;
+        _input.HorizontalAxisChanged += _player.Move;
         _player.Init(_startPoint.position, _playerConfig);
         _player.HealthChanged += _UI.HealthBar.RefreshBar;
         _player.StaminaChanged += _UI.StaminaBar.RefreshBar;
         _player.SleepChanged += _UI.SleepBar.RefreshBar;
 
-        _input.SetPlayer(_player);
+        
     }
     private void Start()
     {

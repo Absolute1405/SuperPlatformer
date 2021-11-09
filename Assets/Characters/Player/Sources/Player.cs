@@ -65,6 +65,11 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Jump()
     {
+        
+        if(!_physics.Grounded)
+        {
+            return;
+        }
         _physics.Jump();
         _statService.Action(_StaminDamage);
     }
