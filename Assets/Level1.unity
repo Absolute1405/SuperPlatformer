@@ -936,7 +936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121445760}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.78, y: -1.41, z: 31.55318}
+  m_LocalPosition: {x: 7.78, y: -0.241, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 808412056}
@@ -1046,6 +1046,8 @@ MonoBehaviour:
   _movement: {fileID: 1121445766}
   _animator: {fileID: 808412057}
   _startDirection: 2
+  _leftBound: -1.12
+  _rightBound: 1
 --- !u!1 &1137167899
 GameObject:
   m_ObjectHideFlags: 0
