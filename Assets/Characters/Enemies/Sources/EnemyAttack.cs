@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public event Action AttackStarted;
+    public int Damage { get; private set; }
+
+    public virtual void Attack(IDamageable target)
     {
-        
+        AttackStarted?.Invoke();
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Initialize(int damage)
     {
-        
+        Damage = damage;
     }
 }

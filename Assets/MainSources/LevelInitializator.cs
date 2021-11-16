@@ -2,7 +2,7 @@
 
 public class LevelInitializator : MonoBehaviour
 {
-    [SerializeField] private EnemyContainer _enemyContainer;
+    [SerializeField] private EnemyContainer[] _enemyContainers;
     [SerializeField] private TrapContainer _trapContainer;
     [SerializeField] private Player _playerPrefab;
     [SerializeField] private Transform _startPoint;
@@ -17,8 +17,12 @@ public class LevelInitializator : MonoBehaviour
     {
         _UI = Instantiate(_UIPrefab);
         _UI.Initialize(_playerConfig);
-        
-        _enemyContainer.Initialize();
+
+        foreach (var container in _enemyContainers)
+        {
+            container.Initialize();
+        }
+
         _trapContainer.Initialize();
 
         _player = Instantiate(_playerPrefab);

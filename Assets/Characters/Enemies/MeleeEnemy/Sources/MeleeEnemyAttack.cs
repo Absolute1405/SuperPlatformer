@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 
 namespace Platformer.Characters.Enemy.MeleeEnemy
 {
     [RequireComponent(typeof(Collider2D))]
-    public class MeleeEnemyAttack : MonoBehaviour, IAttack
+    public class MeleeEnemyAttack : EnemyAttack
     {
         [SerializeField] private float _attackDuration = 1f;
         private Collider2D _collision;
-        private int _damage;
         private IDamageable _tmpTarget;
 
         private void Awake()
@@ -19,13 +17,16 @@ namespace Platformer.Characters.Enemy.MeleeEnemy
             _collision = GetComponent<Collider2D>();
         }
 
-        public void Initialize(int damage)
+        public override void Initialize(int damage)
         {
-            _damage = damage;
+            base.Initialize(damage);
+            _collision.enabled = false;
         }
 
-        public void Attack(IDamageable target)
+        public override void Attack(IDamageable target)
         {
+            base.Attack(target);
+
             _tmpTarget = target;
             StartCoroutine(CollisionLife());
         }
@@ -43,7 +44,7 @@ namespace Platformer.Characters.Enemy.MeleeEnemy
             if (other.gameObject.TryGetComponent<IDamageable>(out var target))
             {
                 if (target == _tmpTarget)
-                    target.TakeDamage(_damage);
+                    target.TakeDamage(Damage);
             }
         }
     }

@@ -3,15 +3,20 @@ using UnityEngine;
 
 public class EnemyContainer : MonoBehaviour
 {
-    private List<Enemy> _enemies;
-
+    [SerializeField] private EnemyConfig _config;
+    private List<Enemy> _enemies = new List<Enemy>();
+    
     public void Initialize()
     {
         Enemy[] enemies = GetComponentsInChildren<Enemy>();
         if (enemies.Length == 0)
             return;
 
-        _enemies.AddRange(enemies);
+        foreach (var enemy in enemies)
+        {
+            enemy.Initialize(_config);
+        }
 
+        _enemies.AddRange(enemies);
     }
 }
