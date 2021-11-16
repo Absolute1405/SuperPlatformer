@@ -1,61 +1,49 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 
 namespace Platformer.Characters.Enemy.MeleeEnemy
 {
-    public class MeleeEnemyAttack : MonoBehaviour
+    [RequireComponent(typeof(Collider2D))]
+    public class MeleeEnemyAttack : MonoBehaviour, IAttack
     {
-        [SerializeField] private float delay = 0.5f;
-        [SerializeField] private float offset = 0.5f;
-        [SerializeField] private float attackClircleradius = 0.5f;
-        [SerializeField] private int damage = 10;
-        [SerializeField] private bool canRotate;
-        private bool tooRight = true;
-        public UnityEvent AttackStarted;
+        [SerializeField] private float _attackDuration = 1f;
+        private Collider2D _collision;
+        private int _damage;
+        private IDamageable _tmpTarget;
 
-        public void Flip()
+        private void Awake()
         {
-            tooRight = !tooRight;
+            _collision = GetComponent<Collider2D>();
         }
 
-        private IEnumerator Delay_hit(Health player)
+        public void Initialize(int damage)
         {
-
-            for (float i = 0; i < delay; i += Time.deltaTime)
-            {
-                yield return null;
-            }
-
-            Vector2 point = transform.position;
-
-            if (tooRight)
-            {
-                point += Vector2.right * offset;
-            }
-            else
-            {
-                point += Vector2.left * offset;
-            }
-            AttackStarted.Invoke();
-
-            for (float i = 0; i < delay; i += Time.deltaTime)
-            {
-                yield return null;
-            }
-            Collider2D colliders = Physics2D.OverlapCircle(point, attackClircleradius, LayerMask.NameToLayer("player"));
-            if (colliders != null)
-            {
-                player.TakeDamage(damage);
-            }
+            _damage = damage;
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        public void Attack(IDamageable target)
         {
-            if (collision.gameObject.TryGetComponent<Health>(out var player))
+            _tmpTarget = target;
+            StartCoroutine(CollisionLife());
+        }
+
+        private IEnumerator CollisionLife()
+        {
+            _collision.enabled = true;
+            yield return new WaitForSeconds(_attackDuration);
+            _collision.enabled = false;
+            _tmpTarget = null;
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.TryGetComponent<IDamageable>(out var target))
             {
-                StartCoroutine(Delay_hit(player));
+                if (target == _tmpTarget)
+                    target.TakeDamage(_damage);
             }
         }
     }
