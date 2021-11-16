@@ -4,39 +4,56 @@ using UnityEngine;
 
 public class MeleeEnemy : Enemy
 {
+    [Header("Components")]
     [SerializeField] private Movement _movement;
     [SerializeField] private MeleeEnemyAnimator _animator;
-    [SerializeField] private Direction _startDirection = Direction.Right;
 
-    private float _maxX;
+    [Header("Settings")]
+    [SerializeField] private Direction _startDirection = Direction.Right;
+    [SerializeField] private float _leftBound = -1f;
+    [SerializeField] private float _rightBound = 1f;
+
     private float _minX;
+    private float _maxX;
+
     private float _speed;
     private Direction _direction;
-
-    private bool OutOfBounds => transform.position.x > _maxX || transform.position.x < _minX;
 
     public override void Initialize(EnemyConfig config)
     {
         base.Initialize(config);
         
         MeleeEnemyConfig banditConfig = config as MeleeEnemyConfig;
-        float range = banditConfig.MoveRange;
         _speed = banditConfig.MoveSpeed;
-
-        _maxX = transform.position.x + range;
-        _minX = transform.position.x - range;
-
         _direction = _startDirection;
         Attack.AttackStarted += _animator.Attack;
+
+        _maxX = transform.position.x + _rightBound;
+        _minX = transform.position.x + _leftBound;
+    }
+
+    private void Start()
+    {
+        StartCoroutine(LifeCycle());
     }
 
     protected override IEnumerator LifeCycle()
     {
         while (true)
         {
-            _animator.SetFlip(_direction == Direction.Right);
+            bool moveRight = _direction == Direction.Right;
+            _animator.SetFlip(moveRight);
             _movement.Move(_direction, _speed);
-            yield return new WaitUntil(() => OutOfBounds);
+
+            if (moveRight)
+            {
+                yield return new WaitUntil(() => transform.position.x > _maxX);
+            }
+            else
+            {
+                yield return new WaitUntil(() => transform.position.x < _minX);
+            }
+
             _direction = DirectionGetter.GetReversed(_direction);
         }
     }
@@ -47,5 +64,14 @@ public class MeleeEnemy : Enemy
         {
             Attack.Attack(target);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        var left = new Vector3(transform.position.x + _rightBound, transform.position.y);
+        var right = new Vector3(transform.position.x + _leftBound, transform.position.y);
+
+        Gizmos.DrawLine(left, right);
     }
 }

@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 398895587}
   - component: {fileID: 398895586}
   m_Layer: 0
-  m_Name: Enemy Container
+  m_Name: Bandit Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f168564575f094cacc356f23d4a695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _config: {fileID: 11400000, guid: 28f4276aa0f07c241ac6dbb2fa680c21, type: 2}
 --- !u!4 &398895587
 Transform:
   m_ObjectHideFlags: 0
@@ -347,7 +348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4a578f7747ad7478467326f7c586b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyContainer: {fileID: 398895586}
+  _enemyContainers:
+  - {fileID: 398895586}
   _trapContainer: {fileID: 1137167900}
   _playerPrefab: {fileID: 3251392408897984175, guid: 258aeb695280bb741851a0e09968b3a6,
     type: 3}
@@ -934,7 +936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121445760}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.71, y: -1.41, z: 31.55318}
+  m_LocalPosition: {x: 7.78, y: -1.41, z: 31.55318}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 808412056}
@@ -998,7 +1000,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -2206,7 +2208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819021888}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.63825, y: -1.1101552, z: -27.264679}
+  m_LocalPosition: {x: 9.97, y: -1.1101552, z: -27.264679}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 519585956}
