@@ -14,9 +14,7 @@ public class MeleeEnemy : Enemy
 
     private float _minX;
     private float _maxX;
-
     private float _speed;
-    private Direction _direction;
 
     public override void Initialize(EnemyConfig config)
     {
@@ -24,7 +22,6 @@ public class MeleeEnemy : Enemy
         
         MeleeEnemyConfig banditConfig = config as MeleeEnemyConfig;
         _speed = banditConfig.MoveSpeed;
-        _direction = _Direction;
         Attack.AttackStarted += _animator.Attack;
 
         _maxX = transform.position.x + _rightBound;
@@ -40,9 +37,9 @@ public class MeleeEnemy : Enemy
     {
         while (true)
         {
-            bool moveRight = _direction == Direction.Right;
+            bool moveRight = DirectionComponent.Value == Direction.Right;
             _animator.SetFlip(moveRight);
-            _movement.Move(_direction, _speed);
+            _movement.Move(DirectionComponent.Value, _speed);
 
             if (moveRight)
             {
@@ -53,7 +50,7 @@ public class MeleeEnemy : Enemy
                 yield return new WaitUntil(() => transform.position.x < _minX);
             }
 
-            _direction = DirectionGetter.GetReversed(_direction);
+            DirectionComponent.Set(DirectionGetter.GetReversed(DirectionComponent.Value));
         }
     }
 
