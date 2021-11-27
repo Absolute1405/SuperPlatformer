@@ -9,7 +9,6 @@ public class MeleeEnemy : Enemy
     [SerializeField] private MeleeEnemyAnimator _animator;
 
     [Header("Settings")]
-    [SerializeField] private Direction _startDirection = Direction.Right;
     [SerializeField] private float _leftBound = -1f;
     [SerializeField] private float _rightBound = 1f;
 
@@ -25,7 +24,7 @@ public class MeleeEnemy : Enemy
         
         MeleeEnemyConfig banditConfig = config as MeleeEnemyConfig;
         _speed = banditConfig.MoveSpeed;
-        _direction = _startDirection;
+        _direction = _Direction;
         Attack.AttackStarted += _animator.Attack;
 
         _maxX = transform.position.x + _rightBound;

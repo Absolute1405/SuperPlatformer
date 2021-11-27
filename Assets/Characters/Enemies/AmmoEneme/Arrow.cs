@@ -13,7 +13,7 @@ public class Arrow : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _startsPoint = transform.position;
     }
-    private void Initialaze(Direction direction)
+    public void Initialaze(Direction direction)
     {
        Vector2 move= DirectionGetter.GetVectorFromDirection(direction);
         _rigidbody.velocity =move*_configs.Speed;

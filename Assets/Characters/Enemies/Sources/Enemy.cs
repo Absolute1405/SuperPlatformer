@@ -7,6 +7,9 @@ public abstract class Enemy : MonoBehaviour
     protected EnemyAttack Attack { get; private set; }
     protected Health Health { get; private set; }
 
+    [SerializeField] private Direction _direction;
+    protected Direction _Direction => _direction;
+
     public virtual void Initialize(EnemyConfig config)
     {
         Attack = GetComponent<EnemyAttack>();
