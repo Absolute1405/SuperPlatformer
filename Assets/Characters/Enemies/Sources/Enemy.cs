@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(IAttack))]
 public abstract class Enemy : MonoBehaviour
 {
     protected EnemyAttack Attack { get; private set; }
@@ -10,6 +10,10 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Initialize(EnemyConfig config)
     {
         Attack = GetComponent<EnemyAttack>();
+
+        if (Attack is null)
+            throw new ArgumentNullException(nameof(Attack));
+
         Attack.Initialize(config.Damage);
         Health = new Health(config.MaxHealth);
     }

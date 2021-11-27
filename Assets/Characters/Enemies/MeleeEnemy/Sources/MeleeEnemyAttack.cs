@@ -15,12 +15,12 @@ namespace Platformer.Characters.Enemy.MeleeEnemy
         private void Awake()
         {
             _collision = GetComponent<Collider2D>();
+            _collision.enabled = false;
         }
 
         public override void Initialize(int damage)
         {
             base.Initialize(damage);
-            _collision.enabled = false;
         }
 
         public override void Attack(IDamageable target)
