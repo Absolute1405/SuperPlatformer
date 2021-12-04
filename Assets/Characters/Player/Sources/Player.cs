@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour, IPlayer
 {
     [Header("Components")]
     [SerializeField] private PlayerPhysics _physics;

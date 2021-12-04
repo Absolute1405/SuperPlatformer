@@ -20,13 +20,13 @@ public class ShootingEnemy : Enemy
     }
     protected override IEnumerator LifeCycle()
     {
-        
+        Attack.Attack();
         yield return new WaitForSeconds(_delay);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.TryGetComponent<IDamageable>(out var damageable))
+        if(collision.TryGetComponent<IPlayer>(out var damageable))
         {
             StartCoroutine(nameof(LifeCycle));
         }

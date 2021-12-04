@@ -10,7 +10,6 @@ namespace Platformer.Characters.Enemy.MeleeEnemy
     {
         [SerializeField] private float _attackDuration = 1f;
         private Collider2D _collision;
-        private IDamageable _tmpTarget;
 
         private void Awake()
         {
@@ -18,16 +17,10 @@ namespace Platformer.Characters.Enemy.MeleeEnemy
             _collision.enabled = false;
         }
 
-        public override void Initialize(int damage)
+        public override void Attack()
         {
-            base.Initialize(damage);
-        }
+            base.Attack();
 
-        public override void Attack(IDamageable target)
-        {
-            base.Attack(target);
-
-            _tmpTarget = target;
             StartCoroutine(CollisionLife());
         }
 
@@ -36,15 +29,13 @@ namespace Platformer.Characters.Enemy.MeleeEnemy
             _collision.enabled = true;
             yield return new WaitForSeconds(_attackDuration);
             _collision.enabled = false;
-            _tmpTarget = null;
         }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.TryGetComponent<IDamageable>(out var target))
             {
-                if (target == _tmpTarget)
-                    target.TakeDamage(Damage);
+                target.TakeDamage(Damage);
             }
         }
     }

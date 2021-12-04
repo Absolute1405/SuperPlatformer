@@ -11,6 +11,11 @@ public class EnemyAttack : MonoBehaviour
         AttackStarted?.Invoke();
     }
 
+    public virtual void Attack()
+    {
+        AttackStarted?.Invoke();
+    }
+
     public virtual void Initialize(int damage)
     {
         Damage = damage;

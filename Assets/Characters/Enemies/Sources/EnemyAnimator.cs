@@ -10,6 +10,7 @@ public class EnemyAnimator : MonoBehaviour
     [SerializeField] private string _deathTrigger = "Death";
 
     protected Animator Animator => _animator;
+    protected SpriteRenderer Renderer => _renderer;
 
     public void Attack()
     {
