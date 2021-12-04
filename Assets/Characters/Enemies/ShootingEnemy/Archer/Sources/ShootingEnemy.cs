@@ -20,12 +20,22 @@ public class ShootingEnemy : Enemy
     }
     protected override IEnumerator LifeCycle()
     {
-        Instantiate(_prefab);
+        
         yield return new WaitForSeconds(_delay);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        throw new NotImplementedException();
+        if(collision.TryGetComponent<IDamageable>(out var damageable))
+        {
+            StartCoroutine(nameof(LifeCycle));
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<IDamageable>(out var damageable))
+        {
+            StopCoroutine(nameof(LifeCycle));
+        }
     }
 }
