@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12b827309497ef4e9e445c90e6d501a, type: 3}
   m_Name: V1
   m_EditorClassIdentifier: 
-  _damage: 0
-  _maxHealth: 0
-  _attackRange: 0
-  _attackDelay: 0
-  _arrowPrefab: {fileID: 0}
+  _damage: 10
+  _maxHealth: 50
+  _attackRange: 10
+  _attackDelay: 2

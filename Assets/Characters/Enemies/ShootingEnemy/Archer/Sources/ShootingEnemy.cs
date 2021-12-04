@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public class ShootingEnemy : Enemy
@@ -8,15 +6,13 @@ public class ShootingEnemy : Enemy
     [SerializeField] private BoxCollider2D _rangeCollider;
 
     private float _delay;
-    private Arrow _prefab;
     public override void Initialize(EnemyConfig config)
     {
         base.Initialize(config);
         ArcherConfig archerConfig = config as ArcherConfig;
         _delay = archerConfig.AttackDelay;
-        _prefab = archerConfig.ArrowPrefab;
-        _rangeCollider.size = Vector2.right * archerConfig.AttackRange;
-        _rangeCollider.isTrigger = true;
+        //_rangeCollider.size = Vector2.right * archerConfig.AttackRange;
+        //_rangeCollider.isTrigger = true;
     }
     protected override IEnumerator LifeCycle()
     {

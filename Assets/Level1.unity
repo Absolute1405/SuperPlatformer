@@ -350,6 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyContainers:
   - {fileID: 398895586}
+  - {fileID: 1323400557}
   _trapContainer: {fileID: 1137167900}
   _playerPrefab: {fileID: 3251392408897984175, guid: 258aeb695280bb741851a0e09968b3a6,
     type: 3}
@@ -386,6 +387,8 @@ GameObject:
   - component: {fileID: 493468771}
   - component: {fileID: 493468766}
   - component: {fileID: 493468770}
+  - component: {fileID: 493468773}
+  - component: {fileID: 493468772}
   m_Layer: 0
   m_Name: Archer_V1
   m_TagString: Untagged
@@ -515,7 +518,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 16.94826, y: 0}
@@ -531,6 +534,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 37.920574, y: 5.12}
   m_EdgeRadius: 0
+--- !u!114 &493468772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493468765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53373bac0b94e6b40a504f55dec864d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 8929287493780138239, guid: 9dc432986cdf5ec448f949bbab6a5730, type: 3}
+--- !u!114 &493468773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493468765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 329fa36b9e0ebd445bf762a7854a2f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startDirection: 1
 --- !u!1 &508177920
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,7 +955,6 @@ MonoBehaviour:
   _hurtTrigger: Hurt
   _deathTrigger: Death
   _moveBool: Move
-  _renderer: {fileID: 808412059}
 --- !u!95 &808412058
 Animator:
   serializedVersion: 3
@@ -1081,6 +1109,7 @@ GameObject:
   - component: {fileID: 1121445764}
   - component: {fileID: 1121445763}
   - component: {fileID: 1121445762}
+  - component: {fileID: 1121445768}
   m_Layer: 0
   m_Name: Bandit
   m_TagString: Untagged
@@ -1207,6 +1236,19 @@ MonoBehaviour:
   _animator: {fileID: 808412057}
   _leftBound: -1.12
   _rightBound: 1
+--- !u!114 &1121445768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121445760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 329fa36b9e0ebd445bf762a7854a2f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startDirection: 2
 --- !u!1 &1137167899
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,6 +1587,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1323400556}
+  - component: {fileID: 1323400557}
   m_Layer: 0
   m_Name: Archer Container
   m_TagString: Untagged
@@ -1567,6 +1610,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1323400557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323400555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f168564575f094cacc356f23d4a695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _config: {fileID: 11400000, guid: 37efdaf5b0a7e624494ff202cdf06aff, type: 2}
 --- !u!1 &1433539639
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,8 @@ public class ShootingAttack : EnemyAttack
     public override void Attack(IDamageable target)
     {
         base.Attack(target);
-        Instantiate(_prefab);
+        var arrow = Instantiate(_prefab);
+        arrow.transform.position += (Vector3) DirectionGetter.GetVectorFromDirection(_direction.Value) * 3f;
         _prefab.Initialaze(_direction.Value);
     }
 }

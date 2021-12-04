@@ -16,7 +16,7 @@ public class Arrow : MonoBehaviour
     public void Initialaze(Direction direction)
     {
        Vector2 move= DirectionGetter.GetVectorFromDirection(direction);
-        _rigidbody.velocity =move*_configs.Speed;
+        _rigidbody.velocity =move * _configs.Speed;
     }
     private void FixedUpdate()
     {

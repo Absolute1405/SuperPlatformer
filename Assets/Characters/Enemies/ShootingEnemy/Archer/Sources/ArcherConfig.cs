@@ -5,8 +5,6 @@ public class ArcherConfig : EnemyConfig
 {
     [SerializeField] private float _attackRange; 
     [SerializeField] private float _attackDelay;
-    [SerializeField] private Arrow _arrowPrefab;
     public float AttackRange => _attackRange;
     public float AttackDelay => _attackDelay;
-    public Arrow ArrowPrefab => _arrowPrefab;
 }
