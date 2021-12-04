@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D),typeof(Collider2D))]
 public class Arrow : MonoBehaviour
 {
     [SerializeField] private ConfigsArrow _configs;
@@ -22,6 +22,14 @@ public class Arrow : MonoBehaviour
     {
         if (Vector2.Distance(_startsPoint, transform.position)>=_configs.Distance)
         {
+            Destroy(gameObject);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<IDamageable>(out var damageable))
+        {
+            damageable.TakeDamage(_configs.Damage);
             Destroy(gameObject);
         }
     }

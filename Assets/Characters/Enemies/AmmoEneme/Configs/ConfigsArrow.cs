@@ -6,8 +6,8 @@ public class ConfigsArrow : ScriptableObject
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _distance;
-    [SerializeField] private float _damage;
+    [SerializeField] private int _damage;
     public float Speed => _speed;
     public float Distance => _distance;
-    public float Damage => _damage;
+    public int Damage => _damage;
 }

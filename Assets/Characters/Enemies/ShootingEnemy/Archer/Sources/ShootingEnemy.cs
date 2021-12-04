@@ -33,7 +33,7 @@ public class ShootingEnemy : Enemy
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<IDamageable>(out var damageable))
+        if (collision.TryGetComponent<IPlayer>(out var damageable))
         {
             StopCoroutine(nameof(LifeCycle));
         }
