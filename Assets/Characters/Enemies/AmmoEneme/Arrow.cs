@@ -5,28 +5,34 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     [SerializeField] private ConfigsArrow _configs;
-    private Rigidbody2D _rigidbody;
+
     private Vector2 _startsPoint;
+    private bool _active;
+    private Vector2 _movement;
     
-    private void Awake()
+    public void Initialize(Direction direction)
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _startsPoint = transform.position;
+       Vector3 move= DirectionGetter.GetVectorFromDirection(direction);
+       _movement = move * _configs.Speed;
+       _startsPoint = transform.position + move * _configs.Length;
+
+       _active = true;
     }
-    public void Initialaze(Direction direction)
-    {
-       Vector2 move= DirectionGetter.GetVectorFromDirection(direction);
-        _rigidbody.velocity =move * _configs.Speed;
-    }
+
     private void FixedUpdate()
     {
+        transform.Translate(_movement * Time.deltaTime);
+
         if (Vector2.Distance(_startsPoint, transform.position)>=_configs.Distance)
         {
             Destroy(gameObject);
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (_active == false) return;
+
         if (collision.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
             damageable.TakeDamage(_configs.Damage);

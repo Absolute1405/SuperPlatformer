@@ -13,13 +13,17 @@ public class ShootingEnemy : Enemy
         PassArgument = _rangeCollider.size.x;
         ArcherConfig archerConfig = config as ArcherConfig;
         _delay = archerConfig.AttackDelay;
+
         //_rangeCollider.size = Vector2.right * archerConfig.AttackRange;
         //_rangeCollider.isTrigger = true;
     }
     protected override IEnumerator LifeCycle()
     {
-        Attack.Attack();
-        yield return new WaitForSeconds(_delay);
+        while (true)
+        {
+            Attack.Attack();
+            yield return new WaitForSeconds(_delay);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

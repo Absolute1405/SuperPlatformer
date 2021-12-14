@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterDirection : MonoBehaviour, ICharacterDirection
 {
     [SerializeField] private Direction _startDirection;
-    public Direction Value { get; private set; }
+    public Direction Value => _startDirection;
 
     public event Action<Direction> ValueChanged;
 

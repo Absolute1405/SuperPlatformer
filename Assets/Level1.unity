@@ -489,7 +489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 493468765}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3, y: -0.93, z: 0}
+  m_LocalPosition: {x: -8.44, y: -1.06, z: 0}
   m_LocalScale: {x: 0.28828087, y: 0.3830759, z: 1}
   m_Children: []
   m_Father: {fileID: 1323400556}
@@ -547,6 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 8929287493780138239, guid: 9dc432986cdf5ec448f949bbab6a5730, type: 3}
+  _enemyCollider: {fileID: 493468767}
 --- !u!114 &493468773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1603,7 +1604,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323400555}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.402787, y: -0.3037819, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 493468769}
