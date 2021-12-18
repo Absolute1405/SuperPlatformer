@@ -28,14 +28,14 @@ public class ShootingEnemy : Enemy
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.TryGetComponent<IPlayer>(out var damageable))
+        if(collision.TryGetComponent<IPlayerDamageable>(out var damageable))
         {
             StartCoroutine(nameof(LifeCycle));
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<IPlayer>(out var damageable))
+        if (collision.TryGetComponent<IPlayerDamageable>(out var damageable))
         {
             StopCoroutine(nameof(LifeCycle));
         }

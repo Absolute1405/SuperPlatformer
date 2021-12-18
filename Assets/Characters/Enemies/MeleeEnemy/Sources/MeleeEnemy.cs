@@ -56,7 +56,7 @@ public class MeleeEnemy : Enemy
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<IPlayer>(out var target))
+        if (other.TryGetComponent<IPlayerDamageable>(out var target))
         {
             Attack.Attack(target);
         }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IPlayer
+public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
 {
     [Header("Components")]
     [SerializeField] private PlayerPhysics _physics;
@@ -22,11 +22,10 @@ public class Player : MonoBehaviour, IPlayer
     private PlayerStatService _statService;
     private bool _directedRight;
 
-    private Vector3 _startPosition;
-
     public event Action<int> HealthChanged;
     public event Action<int> StaminaChanged;
     public event Action<int> SleepChanged;
+    public event Action Died;
 
     public void Init(Vector3 startPosition, PlayerConfig config)
     {
@@ -38,8 +37,8 @@ public class Player : MonoBehaviour, IPlayer
         _maxStamina = config.MaxStamina;
 
         _health = new Health(_maxHealth);
-        _health.Death += () => _physics.SetActive(false);
-        _health.Death += _animations.Death;
+        _health.Death += OnDied;
+
         _health.ValueChanged += (x) => HealthChanged?.Invoke(x);
 
         var stamina = new Stamina(_maxStamina);
@@ -52,15 +51,15 @@ public class Player : MonoBehaviour, IPlayer
 
         _physics.Initialize(_jumpForce, _maxSpeed, _acceleration);
 
-        _startPosition = startPosition;
         _directedRight = true;
     }
 
     public void Respawn(Vector3 point)
     {
-        HealthChanged?.Invoke(_health.Value);
         _health.SetFull();
+        HealthChanged?.Invoke(_health.Value);
         transform.position = point;
+        _physics.SetActive(true);
     }
 
     public void Jump()
@@ -102,6 +101,13 @@ public class Player : MonoBehaviour, IPlayer
     private void FixedUpdate()
     {
         _animations.SetGrounded(_physics.Grounded);
+    }
+
+    private void OnDied()
+    {
+        _animations.Death();
+        _physics.SetActive(false);
+        Died?.Invoke();
     }
 }
 
