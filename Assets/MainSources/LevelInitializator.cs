@@ -9,12 +9,15 @@ public class LevelInitializator : MonoBehaviour
     [SerializeField] private InputController _input;
     [SerializeField] private PlayerConfig _playerConfig;
     [SerializeField] private PlayerUI _UIPrefab;
+    [SerializeField] private LevelController _levelController;
+
 
     private Player _player;
     private PlayerUI _UI;
 
     private void Awake()
     {
+        _levelController.Init();
         _UI = Instantiate(_UIPrefab);
         _UI.Initialize(_playerConfig);
 
@@ -39,4 +42,5 @@ public class LevelInitializator : MonoBehaviour
     {
         _player.Restart();
     }
+    
 }

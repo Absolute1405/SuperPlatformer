@@ -56,11 +56,11 @@ public class Player : MonoBehaviour, IPlayer
         _directedRight = true;
     }
 
-    public void Restart()
+    public void Respawn(Vector3 point)
     {
         HealthChanged?.Invoke(_health.Value);
         _health.SetFull();
-        transform.position = _startPosition;
+        transform.position = point;
     }
 
     public void Jump()
