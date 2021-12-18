@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Default player config
   m_EditorClassIdentifier: 
   _maxHealth: 100
+  _maxStamina: 100
   _damage: 10
   _jumpForce: 4
   _maxSpeed: 15
   _acceleration: 0.8
+  _maxSleep: 5
