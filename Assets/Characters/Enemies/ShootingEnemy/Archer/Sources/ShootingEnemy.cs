@@ -5,6 +5,8 @@ using UnityEngine;
 public class ShootingEnemy : Enemy
 {
     [SerializeField] private BoxCollider2D _rangeCollider;
+    [SerializeField] private EnemyAnimator _animator;
+    [SerializeField] private float _delayAnimation;
     public float PassArgument { get; private set; } 
     private float _delay;
     public override void Initialize(EnemyConfig config)
@@ -13,6 +15,7 @@ public class ShootingEnemy : Enemy
         PassArgument = _rangeCollider.size.x;
         ArcherConfig archerConfig = config as ArcherConfig;
         _delay = archerConfig.AttackDelay;
+        
 
         //_rangeCollider.size = Vector2.right * archerConfig.AttackRange;
         //_rangeCollider.isTrigger = true;
@@ -21,7 +24,10 @@ public class ShootingEnemy : Enemy
     {
         while (true)
         {
+            _animator.Attack();
+            yield return new WaitForSeconds(_delayAnimation);
             Attack.Attack();
+            _animator.Idle();
             yield return new WaitForSeconds(_delay);
         }
     }

@@ -18,6 +18,8 @@ public class Health
 
         _maxValue = maxValue;
         Value = _maxValue;
+        if (Value <= 0)
+            throw new ArgumentOutOfRangeException(nameof(Value));
     }
 
     public void TakeDamage(int damage)

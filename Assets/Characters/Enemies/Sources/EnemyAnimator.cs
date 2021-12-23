@@ -8,6 +8,7 @@ public class EnemyAnimator : MonoBehaviour
     [SerializeField] private string _attackTrigger = "Attack";
     [SerializeField] private string _hurtTrigger = "Hurt";
     [SerializeField] private string _deathTrigger = "Death";
+    [SerializeField] private string _idleTrigger = "Idle";
 
     protected Animator Animator => _animator;
     protected SpriteRenderer Renderer => _renderer;
@@ -15,6 +16,11 @@ public class EnemyAnimator : MonoBehaviour
     public void Attack()
     {
         _animator.SetTrigger(_attackTrigger);
+    }
+
+    public void Idle()
+    {
+        _animator.SetTrigger(_idleTrigger);
     }
 
     public void Hurt()
