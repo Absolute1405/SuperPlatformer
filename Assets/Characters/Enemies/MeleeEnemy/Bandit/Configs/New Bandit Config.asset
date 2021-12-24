@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: New Bandit Config
   m_EditorClassIdentifier: 
   _damage: 10
-  _maxHealth: 20
+  _maxHealth: 100
   _moveSpeed: 1
