@@ -26,6 +26,8 @@ public class MeleeEnemy : Enemy
 
         _maxX = transform.position.x + _rightBound;
         _minX = transform.position.x + _leftBound;
+        var hels = Health.Value;
+        Debug.Log(hels);
     }
 
     private void Start()

@@ -27,6 +27,7 @@ public abstract class Enemy : MonoBehaviour,IDamageable
         if (_statBar is null) return;
 
         Health.ValueChanged += _statBar.RefreshBar;
+        Health.SetFull();
     }
 
     public void TakeDamage(int damage)
