@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 381685710468267863}
   - component: {fileID: 381685710468267861}
   - component: {fileID: 3251392408897984175}
+  - component: {fileID: 2728021282824386227}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -211,9 +212,6 @@ MonoBehaviour:
     m_Bits: 256
   _groundOverlapRadius: 0.1
   _groundPoint: {fileID: 8614637491780288862}
-  StaminDamag:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3251392408897984175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +226,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _physics: {fileID: 381685710468267861}
   _animations: {fileID: 3270680751264536662}
-  _interface: {fileID: 0}
+--- !u!114 &2728021282824386227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381685710468267857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d836fc8d611b9a9428a28f3d2553fd9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2898049213750193054
 GameObject:
   m_ObjectHideFlags: 0

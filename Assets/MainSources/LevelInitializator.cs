@@ -9,6 +9,7 @@ public class LevelInitializator : MonoBehaviour
     [SerializeField] private PlayerConfig _playerConfig;
     [SerializeField] private PlayerUI _UIPrefab;
     [SerializeField] private LevelController _levelController;
+    [SerializeField] private CameraController _camera;
 
 
     private Player _player;
@@ -38,6 +39,8 @@ public class LevelInitializator : MonoBehaviour
 
         //TO DO
         _player.Died += () => _levelController.ReturnToLastPoint(_player);
+
+        _camera.SetTarget(_player.GetComponent<CameraTarget>());
 
     }
 
