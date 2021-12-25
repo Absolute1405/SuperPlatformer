@@ -26,6 +26,7 @@ public abstract class Enemy : MonoBehaviour,IDamageable
         
         if (_statBar is null) return;
 
+        _statBar.Initialize(Health.MaxValue);
         Health.ValueChanged += _statBar.RefreshBar;
         Health.SetFull();
     }

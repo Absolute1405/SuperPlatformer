@@ -20,14 +20,12 @@ public class MeleeEnemy : Enemy
     {
         base.Initialize(config);
         
-        MeleeEnemyConfig banditConfig = config as MeleeEnemyConfig;
+        var banditConfig = config as MeleeEnemyConfig;
         _speed = banditConfig.MoveSpeed;
         Attack.AttackStarted += _animator.Attack;
 
         _maxX = transform.position.x + _rightBound;
         _minX = transform.position.x + _leftBound;
-        var hels = Health.Value;
-        Debug.Log(hels);
     }
 
     private void Start()
