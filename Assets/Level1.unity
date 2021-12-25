@@ -377,6 +377,7 @@ MonoBehaviour:
   _UIPrefab: {fileID: 3622587912780863681, guid: 89d55a89e22cd2c4abcc8b3df4a74643,
     type: 3}
   _levelController: {fileID: 820190788}
+  _camera: {fileID: 1706707327}
 --- !u!4 &428464607
 Transform:
   m_ObjectHideFlags: 0
@@ -2833,7 +2834,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e23487590800145b774161770660e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 0.01
+  _speed: 5
+  _maxSpeed: 10
+  _zPosition: -10
 --- !u!1 &1709587400
 GameObject:
   m_ObjectHideFlags: 0
