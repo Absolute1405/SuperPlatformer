@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Platformer.Characters.Enemy.MeleeEnemy
 {
     [RequireComponent(typeof(Collider2D))]
-    public class MeleeEnemyAttack : EnemyAttack
+    public class MeleeEnemyAttack : CharacterAttack
     {
         [SerializeField] private float _attackDuration = 1f;
         private Collider2D _collision;

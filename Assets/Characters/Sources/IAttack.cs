@@ -1,8 +1,8 @@
-﻿using System;
+﻿using System.Collections;
 
 public interface IAttack
 {
-    event Action AttackStarted; 
-    void Initialize(int damage);
-    void Attack(IDamageable target);
+    void Initialize();
+    IEnumerator Attack(IDamageable target);
+    IEnumerator Attack();
 }

@@ -6,7 +6,7 @@ public abstract class Enemy : MonoBehaviour,IDamageable
 {
     [SerializeField]private StatBar _statBar;
 
-    protected EnemyAttack Attack { get; private set; }
+    protected CharacterAttack Attack { get; private set; }
     protected Health Health { get; private set; }
     protected CharacterDirection DirectionComponent { get; private set; }
     
@@ -17,7 +17,7 @@ public abstract class Enemy : MonoBehaviour,IDamageable
         if (DirectionComponent is null)
             throw new ArgumentNullException(nameof(DirectionComponent));
 
-        Attack = GetComponent<EnemyAttack>();
+        Attack = GetComponent<CharacterAttack>();
         if (Attack is null)
             throw new ArgumentNullException(nameof(Attack));
 
