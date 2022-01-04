@@ -11,12 +11,12 @@ public class ShootingAttack : MonoBehaviour, IAttack
     private ICharacterDirection _direction;
     private float _spawnOffset;
 
-    public IEnumerator Attack(IDamageable target)
+    public IEnumerator Attack(IDamageable target, int damage)
     {
         yield return null;
     }
 
-    public IEnumerator Attack()
+    public IEnumerator Attack(int damage)
     {
         Vector2 arrowPosition = transform.position;
         arrowPosition += DirectionGetter.GetVectorFromDirection(_direction.Value) * _spawnOffset;

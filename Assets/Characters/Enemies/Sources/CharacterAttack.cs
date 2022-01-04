@@ -13,20 +13,22 @@ public class CharacterAttack : MonoBehaviour
     public IEnumerator Attack(IDamageable target)
     {
         AttackStarted?.Invoke();
-        yield return _attack.Attack(target);
+        yield return _attack.Attack(target,Damage);
         AttackEnded?.Invoke();
     }
 
     public IEnumerator Attack()
     {
         AttackStarted?.Invoke();
-        yield return _attack.Attack();
+        yield return _attack.Attack(Damage);
         AttackEnded?.Invoke();
     }
 
     public void Initialize(int damage)
     {
+        _attack = GetComponent<IAttack>();
         Damage = damage;
         _attack.Initialize();
+        
     }
 }

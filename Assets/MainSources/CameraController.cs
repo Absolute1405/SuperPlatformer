@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
     }
     private void LateUpdate()
     {
-        var movement = Vector3.Lerp(transform.position,_target.Position,Time.deltaTime*_speed);
+        Vector3 movement = Vector3.Lerp(transform.position,_target.Position,Time.deltaTime*_speed);
         movement.z = _zPosition;
         //movement = Vector3.ClampMagnitude(movement, _maxSpeed);
         transform.position = movement;

@@ -26,7 +26,7 @@ public class ShootingEnemy : Enemy
         {
             _animator.Attack();
             yield return new WaitForSeconds(_delayAnimation);
-            Attack.Attack();
+            yield return Attack.Attack();
             yield return new WaitForSeconds(_delay);
         }
     }

@@ -58,7 +58,7 @@ public class MeleeEnemy : Enemy
     {
         if (other.TryGetComponent<IPlayerDamageable>(out var target))
         {
-            Attack.Attack(target);
+            StartCoroutine(Attack.Attack(target));
         }
     }
 
