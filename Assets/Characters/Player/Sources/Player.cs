@@ -18,7 +18,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     private float _acceleration = 0.2f;
     
     private Health _health;
-    private PlayerAttack _attack;
+    private CharacterAttack _attack;
     private PlayerStatService _statService;
     private bool _directedRight;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : IAttack
 {
     [SerializeField] private int _damage = 10;
     [SerializeField] private float _range = 1f;

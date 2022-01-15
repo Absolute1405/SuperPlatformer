@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class LevelInitializator : MonoBehaviour
 {
@@ -44,4 +45,8 @@ public class LevelInitializator : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        _levelController.ReturnToLastPoint(_player);
+    }
 }
