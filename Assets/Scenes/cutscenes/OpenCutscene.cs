@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenCutscene : MonoBehaviour
+public class OpenCutscene : Cutscene
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override IEnumerable LiveSaicel()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        yield return null;
     }
 }

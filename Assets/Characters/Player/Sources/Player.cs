@@ -7,6 +7,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     [SerializeField] private PlayerPhysics _physics;
     [SerializeField] private PlayerAnimator _animations;
 
+    [SerializeField] private CharacterDirection _direction;
+
     private const int _StaminDamage = 10;
 
     private int _maxStamina = 100;
@@ -20,7 +22,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     private Health _health;
     private CharacterAttack _attack;
     private PlayerStatService _statService;
-    private bool _directedRight;
+    
 
     public event Action<int> HealthChanged;
     public event Action<int> StaminaChanged;
@@ -49,9 +51,10 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
 
         _statService = new PlayerStatService(stamina, _health, sleep);
 
+        _direction.ValueChanged+=_attack.
         _physics.Initialize(_jumpForce, _maxSpeed, _acceleration);
 
-        _directedRight = true;
+        
     }
 
     public void Respawn(Vector3 point)
@@ -81,14 +84,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
 
         if (input < 0)
         {
-            _directedRight = false;
+            _direction.Set(Direction.Left);
         }
         else if (input > 0)
         {
-            _directedRight = true;
+            _direction.Set(Direction.Right);
         }
 
-        _animations.SetFlip(_directedRight == false);
+        _animations.SetFlip(_direction.Value == Direction.Left);
 
     }
     

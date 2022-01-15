@@ -2,49 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : IAttack
+public class PlayerAttack :MonoBehaviour, IAttack
 {
     [SerializeField] private int _damage = 10;
-    [SerializeField] private float _range = 1f;
     [SerializeField] private LayerMask _enemyLayer;
+    [SerializeField] private float _attackDuration = 1f;
 
-    private const float _overlapRadius = 0.25f;
+    private Direction _direction;
 
-    private SpriteRenderer _renderer;
-    private PlayerAnimator _animator;
+    private Collider2D _collision;
 
-    public void Init(SpriteRenderer renderer, PlayerAnimator animator)
+    private void UpdateDirection(Direction direction)
     {
-        _renderer = renderer;
-        _animator = animator;
+        _direction = direction;
     }
 
-    private void Update()
+    public void Initialize()
     {
-        if (Input.GetMouseButtonDown(0))
+        _collision = GetComponent<Collider2D>();
+        _collision.isTrigger = true;
+        _collision.enabled = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<IDamageable>(out var damageable))
         {
-            Vector2 point = transform.position;
-            Vector2 side = Vector2.right;
-
-            if (_renderer.flipX)
+            if (collision.gameObject.layer == _enemyLayer)
             {
-                side = Vector2.left;
+                damageable.TakeDamage(_damage);
             }
-
-            point += side * _range;
-            point += Vector2.down;
-            Collider2D collider = Physics2D.OverlapCircle(point, _overlapRadius, _enemyLayer);
-            _animator.Attack();
-
-            if (collider == null)
-            {
-                return;
-            }
-
-            if (collider.gameObject.TryGetComponent<Health>(out var enemy))
-            {
-                enemy.TakeDamage(_damage);
-            }
+            
         }
+        
+    }
+
+    public IEnumerator Attack(IDamageable target, int damage)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public IEnumerator Attack(int damage)
+    {
+        _damage = damage;
+        _collision.enabled = true;
+        yield return new WaitForSeconds(_attackDuration);
+        _collision.enabled = false;
     }
 }
