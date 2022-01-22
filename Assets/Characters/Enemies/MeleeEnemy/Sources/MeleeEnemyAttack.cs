@@ -35,8 +35,15 @@ namespace Platformer.Characters.Enemy.MeleeEnemy
         {
             _damage = damage;
             _collision.enabled = true;
+            Debug.Log("Attack bandit started");
             yield return new WaitForSeconds(_attackDuration);
+            Debug.Log("Attack bandit ended");
             _collision.enabled = false;
+        }
+
+        public void UpdateDirection(Direction direction)
+        {
+            throw new NotImplementedException();
         }
     }
 }

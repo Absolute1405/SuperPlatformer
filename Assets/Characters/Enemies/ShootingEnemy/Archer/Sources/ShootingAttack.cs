@@ -39,4 +39,9 @@ public class ShootingAttack : MonoBehaviour, IAttack
 
         _spawnOffset = _enemyCollider.bounds.size.x / 2;
     }
+
+    public void UpdateDirection(Direction direction)
+    {
+        throw new NotImplementedException();
+    }
 }

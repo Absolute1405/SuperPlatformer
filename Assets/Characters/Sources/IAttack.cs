@@ -6,4 +6,5 @@ public interface IAttack
     IEnumerator Attack(IDamageable target,int damage);
     IEnumerator Attack(int damage);
 
+    void UpdateDirection(Direction direction);
 }

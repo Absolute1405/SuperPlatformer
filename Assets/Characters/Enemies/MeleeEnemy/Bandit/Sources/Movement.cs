@@ -16,4 +16,9 @@ public class Movement : MonoBehaviour
         _movement = DirectionGetter.GetVectorFromDirection(direction);
         _rigidbody.velocity = _movement * speed;
     }
+
+    public void Stop()
+    {
+        _rigidbody.velocity = Vector2.zero;
+    }
 }

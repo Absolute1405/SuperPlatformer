@@ -23,9 +23,21 @@ public class MeleeEnemy : Enemy
         var banditConfig = config as MeleeEnemyConfig;
         _speed = banditConfig.MoveSpeed;
         Attack.AttackStarted += _animator.Attack;
+        Attack.AttackEnded += OnAttackEnded;
 
         _maxX = transform.position.x + _rightBound;
         _minX = transform.position.x + _leftBound;
+    }
+
+    private void OnAttackEnded()
+    {
+        StartCoroutine(LifeCycle());
+    }
+
+    protected override void OnDeath()
+    {
+        _movement.Stop();
+        StopAllCoroutines();
     }
 
     private void Start()
@@ -58,7 +70,21 @@ public class MeleeEnemy : Enemy
     {
         if (other.TryGetComponent<IPlayerDamageable>(out var target))
         {
-            StartCoroutine(Attack.Attack(target));
+            StopAllCoroutines();
+            _movement.Stop();
+
+            bool playerRight = other.gameObject.transform.position.x > transform.position.x;
+
+            if (playerRight)
+            {
+                DirectionComponent.Set(Direction.Right);
+            }
+            else
+            {
+                DirectionComponent.Set(Direction.Left);
+            }
+
+            StartCoroutine(Attack.Attack());
         }
     }
 

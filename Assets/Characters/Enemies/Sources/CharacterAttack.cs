@@ -31,4 +31,9 @@ public class CharacterAttack : MonoBehaviour
         _attack.Initialize();
         
     }
+
+    public void UpdateDirection(Direction direction)
+    {
+        _attack.UpdateDirection(direction);
+    }
 }

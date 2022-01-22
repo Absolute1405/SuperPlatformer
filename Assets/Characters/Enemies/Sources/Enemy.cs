@@ -29,6 +29,7 @@ public abstract class Enemy : MonoBehaviour,IDamageable
         _statBar.Initialize(Health.MaxValue);
         Health.ValueChanged += _statBar.RefreshBar;
         Health.SetFull();
+        Health.Death += OnDeath;
     }
 
     public void TakeDamage(int damage)
@@ -37,5 +38,7 @@ public abstract class Enemy : MonoBehaviour,IDamageable
     }
 
     protected abstract IEnumerator LifeCycle();
+
+    protected abstract void OnDeath();
 
 }

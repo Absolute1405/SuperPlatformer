@@ -6,7 +6,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     [Header("Components")]
     [SerializeField] private PlayerPhysics _physics;
     [SerializeField] private PlayerAnimator _animations;
-
+    [SerializeField] private CharacterAttack _attack;
     [SerializeField] private CharacterDirection _direction;
 
     private const int _StaminDamage = 10;
@@ -20,7 +20,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     private float _acceleration = 0.2f;
     
     private Health _health;
-    private CharacterAttack _attack;
     private PlayerStatService _statService;
     
 
@@ -51,7 +50,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
 
         _statService = new PlayerStatService(stamina, _health, sleep);
 
-        _direction.ValueChanged+=_attack.
+        _direction.ValueChanged += _attack.UpdateDirection;
         _physics.Initialize(_jumpForce, _maxSpeed, _acceleration);
 
         

@@ -15,11 +15,13 @@ public class ShootingEnemy : Enemy
         PassArgument = _rangeCollider.size.x;
         ArcherConfig archerConfig = config as ArcherConfig;
         _delay = archerConfig.AttackDelay;
-        
-
-        //_rangeCollider.size = Vector2.right * archerConfig.AttackRange;
-        //_rangeCollider.isTrigger = true;
     }
+
+    protected override void OnDeath()
+    {
+        StopAllCoroutines();
+    }
+
     protected override IEnumerator LifeCycle()
     {
         while (true)

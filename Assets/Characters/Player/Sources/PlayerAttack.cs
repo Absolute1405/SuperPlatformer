@@ -12,7 +12,7 @@ public class PlayerAttack :MonoBehaviour, IAttack
 
     private Collider2D _collision;
 
-    private void UpdateDirection(Direction direction)
+    public void UpdateDirection(Direction direction)
     {
         _direction = direction;
     }
