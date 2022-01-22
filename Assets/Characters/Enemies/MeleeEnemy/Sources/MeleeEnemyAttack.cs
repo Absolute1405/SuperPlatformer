@@ -14,7 +14,7 @@ namespace Platformer.Characters.Enemy.MeleeEnemy
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.TryGetComponent<IDamageable>(out var target))
+            if (other.gameObject.TryGetComponent<IPlayerDamageable>(out var target))
             {
                 target.TakeDamage(_damage);
             }
@@ -35,9 +35,9 @@ namespace Platformer.Characters.Enemy.MeleeEnemy
         {
             _damage = damage;
             _collision.enabled = true;
-            Debug.Log("Attack bandit started");
+            
             yield return new WaitForSeconds(_attackDuration);
-            Debug.Log("Attack bandit ended");
+            
             _collision.enabled = false;
         }
 

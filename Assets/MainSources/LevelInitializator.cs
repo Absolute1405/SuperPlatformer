@@ -40,6 +40,7 @@ public class LevelInitializator : MonoBehaviour
 
         //TO DO
         _player.Died += () => _levelController.ReturnToLastPoint(_player);
+        
 
         _camera.SetTarget(_player.GetComponent<CameraTarget>());
 
