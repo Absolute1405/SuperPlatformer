@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Slider))]
+[RequireComponent(typeof(Image))]
 public class StatBar : MonoBehaviour
 {
-    private Slider _bar;
+    private Image _bar;
     private int _maxValue;
 
     public void Initialize(int maxValue)
@@ -13,11 +13,11 @@ public class StatBar : MonoBehaviour
             return;
 
         _maxValue = maxValue;
-        _bar = GetComponent<Slider>();
+        _bar = GetComponent<Image>();
     }
 
     public void RefreshBar(int value)
     {
-        _bar.value = (float)value / _maxValue;
+        _bar.fillAmount = (float)value / _maxValue;
     }
 }

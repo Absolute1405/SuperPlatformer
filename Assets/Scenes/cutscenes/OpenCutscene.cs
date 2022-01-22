@@ -6,7 +6,7 @@ public class OpenCutscene : Cutscene
 {
     [SerializeField] private float speed = 1f;
     private Vector2 vector2 ;
-    protected override IEnumerable LiveSaicel()
+    protected override IEnumerable LifeCycle()
     {
         foreach(Vector2 point in points)
         {
@@ -14,6 +14,7 @@ public class OpenCutscene : Cutscene
         //    Vector2 point_vctor = new Vector2(point.x, point.y);
         //    vector2 = vector2.MoveTowards(vector2,point_vctor,speed*Time.deltaTime)
         }
+
         yield return null;
     }
 }

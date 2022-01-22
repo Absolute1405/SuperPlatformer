@@ -6,5 +6,5 @@ public abstract class Cutscene : MonoBehaviour
 {
     protected Vector2[] points;
 
-    protected abstract IEnumerable LiveSaicel();
+    protected abstract IEnumerable LifeCycle();
 }

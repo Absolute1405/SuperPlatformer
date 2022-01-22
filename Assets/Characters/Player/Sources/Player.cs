@@ -52,8 +52,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
 
         _direction.ValueChanged += _attack.UpdateDirection;
         _physics.Initialize(_jumpForce, _maxSpeed, _acceleration);
-
-        
+        _attack.Initialize(_damage);
     }
 
     public void Respawn(Vector3 point)

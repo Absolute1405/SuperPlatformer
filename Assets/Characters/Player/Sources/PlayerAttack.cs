@@ -9,7 +9,6 @@ public class PlayerAttack :MonoBehaviour, IAttack
     [SerializeField] private float _attackDuration = 1f;
 
     private Direction _direction;
-
     private Collider2D _collision;
 
     public void UpdateDirection(Direction direction)
@@ -20,7 +19,6 @@ public class PlayerAttack :MonoBehaviour, IAttack
     public void Initialize()
     {
         _collision = GetComponent<Collider2D>();
-        _collision.isTrigger = true;
         _collision.enabled = false;
     }
 
