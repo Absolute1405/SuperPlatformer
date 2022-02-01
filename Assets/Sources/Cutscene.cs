@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class Cutscene : MonoBehaviour
 {
-    protected Vector2[] points;
+    protected Vector3[] points;
+    protected float[] pause;
 
     protected abstract IEnumerable LifeCycle();
 }
