@@ -55,12 +55,19 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
         _attack.Initialize(_damage);
     }
 
+    public void Attack()
+    {
+        _attack.StartCoroutine(_attack.Attack());
+        _animations.Attack();
+    }
+
     public void Respawn(Vector3 point)
     {
         _health.SetFull();
         HealthChanged?.Invoke(_health.Value);
         transform.position = point;
         _physics.SetActive(true);
+        _animations.Revive();
     }
 
     public void Jump()

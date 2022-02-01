@@ -31,6 +31,7 @@ public class LevelInitializator : MonoBehaviour
 
         _player = Instantiate(_playerPrefab);
         _input.SpacePressed += _player.Jump;
+        _input.LMousePressed += _player.Attack;
         _input.HorizontalAxisChanged += _player.Move;
 
         _player.Init(_levelController.StartPosition, _playerConfig);

@@ -6,6 +6,7 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _renderer;
 
+    [SerializeField] private string _reviveTrigger = "Revive";
     [SerializeField] private string _attackTrigger = "Attack";
     [SerializeField] private string _hurtTrigger = "Hurt";
     [SerializeField] private string _deathTrigger = "Death";
@@ -15,6 +16,11 @@ public class PlayerAnimator : MonoBehaviour
     public void Attack()
     {
         _animator.SetTrigger(_attackTrigger);
+    }
+
+    public void Revive()
+    {
+        _animator.SetTrigger(_reviveTrigger);
     }
 
     public void Hurt()

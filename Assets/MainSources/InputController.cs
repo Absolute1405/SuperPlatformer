@@ -5,6 +5,7 @@ public class InputController : MonoBehaviour
 {
     public event Action<float> HorizontalAxisChanged;
     public event Action SpacePressed;
+    public event Action LMousePressed;
 
     private void Update()
     {
@@ -13,5 +14,7 @@ public class InputController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
             SpacePressed?.Invoke();
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            LMousePressed?.Invoke();
     }
 }
