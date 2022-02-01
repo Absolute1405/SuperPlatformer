@@ -5,6 +5,7 @@ public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private ParticleSystem _reviveEffect;
 
     [SerializeField] private string _reviveTrigger = "Revive";
     [SerializeField] private string _attackTrigger = "Attack";
@@ -20,6 +21,7 @@ public class PlayerAnimator : MonoBehaviour
 
     public void Revive()
     {
+        _reviveEffect.Play();
         _animator.SetTrigger(_reviveTrigger);
     }
 
