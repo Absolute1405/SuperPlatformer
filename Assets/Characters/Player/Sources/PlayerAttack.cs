@@ -35,12 +35,12 @@ public class PlayerAttack :MonoBehaviour, IAttack
         
     }
 
-    public IEnumerator Attack(IDamageable target, int damage)
+    public IEnumerator Attack(IDamageable target, Damage damage)
     {
         throw new System.NotImplementedException();
     }
 
-    public IEnumerator Attack(int damage)
+    public IEnumerator Attack(Damage damage)
     {
         _damage = damage;
         _collision.enabled = true;

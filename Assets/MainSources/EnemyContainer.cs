@@ -19,4 +19,16 @@ public class EnemyContainer : MonoBehaviour
 
         _enemies.AddRange(enemies);
     }
+
+    public void Dispose()
+    {
+        Enemy[] enemies = GetComponentsInChildren<Enemy>();
+        if (enemies.Length == 0)
+            return;
+
+        foreach (var enemy in enemies)
+        {
+            enemy.Dispose();
+        }
+    }
 }

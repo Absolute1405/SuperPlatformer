@@ -10,7 +10,7 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private string _reviveTrigger = "Revive";
     [SerializeField] private string _attackTrigger = "Attack";
     [SerializeField] private string _hurtTrigger = "Hurt";
-    [SerializeField] private string _deathTrigger = "Death";
+    [SerializeField] private string _deathTrigger = "Abandoned";
     [SerializeField] private string _moveBool = "Move";
     [SerializeField] private string _groundBool = "Grounded";
 

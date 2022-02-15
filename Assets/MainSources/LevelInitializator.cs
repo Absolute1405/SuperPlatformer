@@ -51,4 +51,12 @@ public class LevelInitializator : MonoBehaviour
     {
         _levelController.ReturnToLastPoint(_player);
     }
+
+    public void OnLevelEnded()
+    {
+        foreach (var container in _enemyContainers)
+        {
+            container.Dispose();
+        }
+    }
 }

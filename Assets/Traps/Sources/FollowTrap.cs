@@ -6,7 +6,7 @@ public class FollowTrap : Trap, IFollowTrap
 {
     public float Time { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-    public IEnumerator FollowFor(Health target)
+    public IEnumerator FollowFor(Stat target)
     {
         throw new System.NotImplementedException();
     }

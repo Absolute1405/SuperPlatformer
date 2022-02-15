@@ -17,7 +17,7 @@ public class ShootingEnemy : Enemy
         _delay = archerConfig.AttackDelay;
     }
 
-    protected override void OnDeath()
+    protected override void OnAbandoned()
     {
         StopAllCoroutines();
     }

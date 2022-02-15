@@ -2,12 +2,16 @@
 
 public class PlayerStatService
 {
-    private const int _damage = 5;
-    private readonly Stamina _stamina;
-    private readonly Health _health;
-    private readonly Sleep _sleep;
+    private const int _damage = 5; // TODO to config
+    private readonly Stat _stamina;
+    private readonly Stat _health;
+    private readonly Stat _sleep;
 
-    public PlayerStatService(Stamina stamina, Health health, Sleep sleep)
+    public event Action<int> StaminaChanged;
+    public event Action<int> SleepChanged;
+    public event Action<int> HealthChanged;
+
+    public PlayerStatService(Stat stamina, Stat health, Stat sleep)
     {
         if (stamina is null)
             throw new ArgumentNullException(nameof(stamina));
@@ -21,6 +25,10 @@ public class PlayerStatService
         _stamina = stamina;
         _health = health;
         _sleep = sleep;
+
+        _stamina.ValueChanged += OnStaminaChanged;
+        _sleep.ValueChanged += OnSleepChanged;
+        _health.ValueChanged += OnHealthChanged;
     }
 
     public void Action(int staminaRequired)
@@ -29,18 +37,28 @@ public class PlayerStatService
         {
             if (_sleep.Value > 0)
             {
-                _sleep.Decrease();
+                _sleep.Decrease(1);
                 _stamina.SetFull();
             }
             else
             {
-                _health.TakeDamage(_damage);
+                _health.Decrease(_damage);
             }
-            
         }
         else
         {
             _stamina.Decrease(staminaRequired);
         }
+    }
+
+    public void OnStaminaChanged(int value) => StaminaChanged?.Invoke(value);
+    public void OnSleepChanged(int value) => SleepChanged?.Invoke(value);
+    public void OnHealthChanged(int value) => HealthChanged?.Invoke(value);
+
+    public void TakeDamage(Damage damage)
+    {
+        //TODO
+
+        _health.Decrease(damage.Value);
     }
 }

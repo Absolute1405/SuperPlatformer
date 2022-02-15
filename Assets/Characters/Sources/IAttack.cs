@@ -3,8 +3,8 @@
 public interface IAttack
 {
     void Initialize();
-    IEnumerator Attack(IDamageable target,int damage);
-    IEnumerator Attack(int damage);
+    IEnumerator Attack(IDamageable target, Damage damage);
+    IEnumerator Attack(Damage damage);
 
     void UpdateDirection(Direction direction);
 }

@@ -34,7 +34,7 @@ public class MeleeEnemy : Enemy
         StartCoroutine(LifeCycle());
     }
 
-    protected override void OnDeath()
+    protected override void OnAbandoned()
     {
         _movement.Stop();
         StopAllCoroutines();

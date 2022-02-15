@@ -8,28 +8,29 @@ public class CharacterAttack : MonoBehaviour
     public event Action AttackEnded;
     private IAttack _attack;
 
-    public int Damage { get; private set; }
+    public Weapon Weapon { get; private set; }
 
     public IEnumerator Attack(IDamageable target)
     {
         AttackStarted?.Invoke();
-        yield return _attack.Attack(target,Damage);
+        var damage = Weapon.GetDamage();
+        yield return _attack.Attack(target, damage);
         AttackEnded?.Invoke();
     }
 
     public IEnumerator Attack()
     {
         AttackStarted?.Invoke();
-        yield return _attack.Attack(Damage);
+        var damage = Weapon.GetDamage();
+        yield return _attack.Attack(damage);
         AttackEnded?.Invoke();
     }
 
-    public void Initialize(int damage)
+    public void Initialize(Weapon weapon)
     {
         _attack = GetComponent<IAttack>();
-        Damage = damage;
+        Weapon = weapon;
         _attack.Initialize();
-        
     }
 
     public void UpdateDirection(Direction direction)

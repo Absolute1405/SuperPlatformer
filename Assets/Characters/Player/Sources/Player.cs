@@ -8,6 +8,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     [SerializeField] private PlayerAnimator _animations;
     [SerializeField] private CharacterAttack _attack;
     [SerializeField] private CharacterDirection _direction;
+    [SerializeField] private Weapon _weapon;
 
     private const int _StaminDamage = 10;
 
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     private float _maxSpeed = 5f;
     private float _acceleration = 0.2f;
     
-    private Health _health;
+    private Stat _health;
     private PlayerStatService _statService;
     
 
@@ -37,8 +38,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
         _acceleration = config.Acceleration;
         _maxStamina = config.MaxStamina;
 
-        _health = new Health(_maxHealth);
-        _health.Death += OnDied;
+        _health = new Stat(_maxHealth);
+        _health.Abandoned += OnDied;
 
         _health.ValueChanged += (x) => HealthChanged?.Invoke(x);
 
@@ -52,7 +53,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
 
         _direction.ValueChanged += _attack.UpdateDirection;
         _physics.Initialize(_jumpForce, _maxSpeed, _acceleration);
-        _attack.Initialize(_damage);
+
+        _attack.Initialize(_weapon); // tmp weapon
     }
 
     public void Attack()
@@ -101,9 +103,9 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     }
     
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(Damage damage)
     {
-        _health.TakeDamage(damage);
+        _health.Decrease(damage);
     }
 
     private void FixedUpdate()

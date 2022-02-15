@@ -35,7 +35,8 @@ public class Arrow : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable.TakeDamage(_configs.Damage);
+            var damage = _configs.GetDamage();
+            damageable.TakeDamage(damage);
             Destroy(gameObject);
         }
     }

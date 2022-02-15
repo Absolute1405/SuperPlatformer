@@ -7,7 +7,7 @@ public class EnemyAnimator : MonoBehaviour
 
     [SerializeField] private string _attackTrigger = "Attack";
     [SerializeField] private string _hurtTrigger = "Hurt";
-    [SerializeField] private string _deathTrigger = "Death";
+    [SerializeField] private string _deathTrigger = "Abandoned";
     [SerializeField] private string _idleTrigger = "Idle";
 
     protected Animator Animator => _animator;
