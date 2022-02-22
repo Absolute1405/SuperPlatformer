@@ -10,6 +10,7 @@ public class EnemyStatService
 
     public EnemyStatService(Stat health)
     {
+        _health = health;
         _health.ValueChanged += OnHealthChanged;
     }
 

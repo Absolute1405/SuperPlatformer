@@ -15,14 +15,11 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     private int _maxStamina = 100;
     private int _maxSleep=4;
     private int _maxHealth = 100;
-    private int _damage = 10;
     private float _jumpForce = 20f;
     private float _maxSpeed = 5f;
     private float _acceleration = 0.2f;
     
-    private Stat _health;
     private PlayerStatService _statService;
-    
 
     public event Action<int> HealthChanged;
     public event Action<int> StaminaChanged;
@@ -32,16 +29,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     public void Init(Vector3 startPosition, PlayerConfig config)
     {
         _maxHealth = config.MaxHealth;
-        _damage = config.Damage;
         _jumpForce = config.JumpForce;
         _maxSpeed = config.MaxSpeed;
         _acceleration = config.Acceleration;
         _maxStamina = config.MaxStamina;
 
-        _health = new Stat(_maxHealth);
-        _health.Abandoned += OnDied;
-
-        _health.ValueChanged += (x) => HealthChanged?.Invoke(x);
+        var health = new Stat(_maxHealth);
+        health.Abandoned += OnDied;
+        health.ValueChanged += (x) => HealthChanged?.Invoke(x);
 
         var stamina = new Stat(_maxStamina);
         stamina.ValueChanged += (x) => StaminaChanged?.Invoke(x);
@@ -49,7 +44,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
         var sleep = new Stat(config.MaxSleep);
         sleep.ValueChanged += (x) => SleepChanged?.Invoke(x);
 
-        _statService = new PlayerStatService(stamina, _health, sleep);
+        _statService = new PlayerStatService(stamina, health, sleep);
 
         _direction.ValueChanged += _attack.UpdateDirection;
         _physics.Initialize(_jumpForce, _maxSpeed, _acceleration);
@@ -65,8 +60,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
 
     public void Respawn(Vector3 point)
     {
-        _health.SetFull();
-        HealthChanged?.Invoke(_health.Value);
+        _statService.SetFullHealth();
+        //HealthChanged?.Invoke(_health.Value); TODO
         transform.position = point;
         _physics.SetActive(true);
         _animations.Revive();
@@ -105,7 +100,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
 
     public void TakeDamage(Damage damage)
     {
-        _health.Decrease(damage.Value);
+        _statService.TakeDamage(damage);
     }
 
     private void FixedUpdate()

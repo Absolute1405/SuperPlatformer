@@ -31,6 +31,11 @@ public class PlayerStatService
         _health.ValueChanged += OnHealthChanged;
     }
 
+    public void SetFullHealth()
+    {
+        _health.SetFull();
+    }
+
     public void Action(int staminaRequired)
     {
         if (_stamina.Value <= 0)

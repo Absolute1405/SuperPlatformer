@@ -3,17 +3,11 @@
     public DamageType Type { get; }
     public int Value { get; }
 
-    public Damage(int value, DamageType type)   //What?
+    public Damage(int value, DamageType type)   
     {
         Value = value;
         Type = type;
     }
-    //possibly
-    //public void DamageSet(int value, DamageType type)   
-    //{
-    //    Value = value;
-    //    Type = type;
-    //}
 }
 
 public enum DamageType

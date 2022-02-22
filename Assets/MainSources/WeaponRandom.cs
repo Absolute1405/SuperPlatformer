@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[CreateAssetMenu(fileName = "New Random Weapon", menuName = "Configs/Weapons/RandomWeapon", order = 1)]
 public class WeaponRandom : Weapon
 {
     [SerializeField, Min(0)] private int _minDamage;

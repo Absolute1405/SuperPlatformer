@@ -16,9 +16,8 @@ public class SpikeTrap : Trap, ITimerTrap
     public override void Initialize()
     {
         Timer = _config.Timer;
-        Damage = _config.Damage;
+        Damage = new Damage(_config.Damage, _config.Type);
         StartCoroutine(WaitAndHit());
-
     }
 
     public IEnumerator WaitAndHit()

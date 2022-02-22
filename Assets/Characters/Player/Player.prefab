@@ -233,6 +233,7 @@ MonoBehaviour:
   _animations: {fileID: 3270680751264536662}
   _attack: {fileID: 6706257009041897653}
   _direction: {fileID: 6395392412796183643}
+  _weapon: {fileID: 11400000, guid: b4f7f82810b4c064d8f3c1eb36428fb2, type: 2}
 --- !u!114 &2728021282824386227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b00f213f8a1634393afe113847181a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 0

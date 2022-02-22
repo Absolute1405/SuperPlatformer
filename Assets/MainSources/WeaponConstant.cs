@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "New Constant Weapon", menuName = "Configs/Weapons/ConstantWeapon", order = 0)]
 public class WeaponConstant : Weapon
 {
     [SerializeField] private int _damage;
