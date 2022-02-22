@@ -105,7 +105,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
 
     public void TakeDamage(Damage damage)
     {
-        _health.Decrease(damage);
+        _health.Decrease(damage.Value);
     }
 
     private void FixedUpdate()
