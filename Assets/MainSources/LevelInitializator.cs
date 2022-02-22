@@ -35,12 +35,12 @@ public class LevelInitializator : MonoBehaviour
         _input.HorizontalAxisChanged += _player.Move;
 
         _player.Init(_levelController.StartPosition, _playerConfig);
-        _player.HealthChanged += _UI.HealthBar.RefreshBar;
-        _player.StaminaChanged += _UI.StaminaBar.RefreshBar;
-        _player.SleepChanged += _UI.SleepBar.RefreshBar;
+        //_player.HealthChanged += _UI.HealthBar.RefreshBar;
+        //_player.StaminaChanged += _UI.StaminaBar.RefreshBar;
+        //_player.SleepChanged += _UI.SleepBar.RefreshBar;
 
-        //TO DO
-        _player.Died += () => _levelController.ReturnToLastPoint(_player);
+        ////TO DO
+        //_player.Died += () => _levelController.ReturnToLastPoint(_player);
         
 
         _camera.SetTarget(_player.GetComponent<CameraTarget>());

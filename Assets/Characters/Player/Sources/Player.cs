@@ -12,42 +12,26 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
 
     private const int _StaminDamage = 10;
 
-    private int _maxStamina = 100;
-    private int _maxSleep=4;
-    private int _maxHealth = 100;
     private float _jumpForce = 20f;
     private float _maxSpeed = 5f;
     private float _acceleration = 0.2f;
     
     private PlayerStatService _statService;
 
-    public event Action<int> HealthChanged;
-    public event Action<int> StaminaChanged;
-    public event Action<int> SleepChanged;
-    public event Action Died;
+    
 
     public void Init(Vector3 startPosition, PlayerConfig config)
     {
-        _maxHealth = config.MaxHealth;
         _jumpForce = config.JumpForce;
         _maxSpeed = config.MaxSpeed;
         _acceleration = config.Acceleration;
-        _maxStamina = config.MaxStamina;
 
-        var health = new Stat(_maxHealth);
-        health.Abandoned += OnDied;
-        health.ValueChanged += (x) => HealthChanged?.Invoke(x);
-
-        var stamina = new Stat(_maxStamina);
-        stamina.ValueChanged += (x) => StaminaChanged?.Invoke(x);
-
-        var sleep = new Stat(config.MaxSleep);
-        sleep.ValueChanged += (x) => SleepChanged?.Invoke(x);
-
-        _statService = new PlayerStatService(stamina, health, sleep);
+        _statService = new PlayerStatService(config.MaxStamina,config.MaxHealth,config.MaxSleep);
 
         _direction.ValueChanged += _attack.UpdateDirection;
         _physics.Initialize(_jumpForce, _maxSpeed, _acceleration);
+
+        _statService.Death += OnDied;
 
         _attack.Initialize(_weapon); // tmp weapon
     }
@@ -112,7 +96,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     {
         _animations.Death();
         _physics.SetActive(false);
-        Died?.Invoke();
     }
 }
 

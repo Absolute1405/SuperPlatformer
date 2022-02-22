@@ -10,25 +10,18 @@ public class PlayerStatService
     public event Action<int> StaminaChanged;
     public event Action<int> SleepChanged;
     public event Action<int> HealthChanged;
+    public event Action Death;
 
-    public PlayerStatService(Stat stamina, Stat health, Stat sleep)
+    public PlayerStatService(int maxStamina, int maxHealth, int maxSleep)
     {
-        if (stamina is null)
-            throw new ArgumentNullException(nameof(stamina));
-
-        if (health is null)
-            throw new ArgumentNullException(nameof(health));
-
-        if (sleep is null)
-            throw new ArgumentNullException(nameof(sleep));
-
-        _stamina = stamina;
-        _health = health;
-        _sleep = sleep;
+        _stamina=new Stat(maxStamina);
+        _health = new Stat(maxHealth);
+        _sleep = new Stat(maxSleep);
 
         _stamina.ValueChanged += OnStaminaChanged;
         _sleep.ValueChanged += OnSleepChanged;
         _health.ValueChanged += OnHealthChanged;
+        _health.Abandoned += OnDeath;
     }
 
     public void SetFullHealth()
@@ -56,14 +49,16 @@ public class PlayerStatService
         }
     }
 
-    public void OnStaminaChanged(int value) => StaminaChanged?.Invoke(value);
-    public void OnSleepChanged(int value) => SleepChanged?.Invoke(value);
-    public void OnHealthChanged(int value) => HealthChanged?.Invoke(value);
+    private void OnStaminaChanged(int value) => StaminaChanged?.Invoke(value);
+    private void OnSleepChanged(int value) => SleepChanged?.Invoke(value);
+    private void OnHealthChanged(int value) => HealthChanged?.Invoke(value);
+    private void OnDeath() => Death?.Invoke();
 
     public void TakeDamage(Damage damage)
     {
         //TODO
 
         _health.Decrease(damage.Value);
+         
     }
 }
