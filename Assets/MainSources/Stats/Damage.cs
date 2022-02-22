@@ -8,6 +8,12 @@
         Value = value;
         Type = type;
     }
+    //possibly
+    //public void DamageSet(int value, DamageType type)   
+    //{
+    //    Value = value;
+    //    Type = type;
+    //}
 }
 
 public enum DamageType
