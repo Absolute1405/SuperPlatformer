@@ -9,7 +9,7 @@ public class Trap : MonoBehaviour
 
     public virtual void Initialize()
     {
-       
+       Dama
     }
 
     protected virtual void Hit(IDamageable target)

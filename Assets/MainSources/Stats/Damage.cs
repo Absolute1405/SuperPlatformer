@@ -3,7 +3,7 @@
     public DamageType Type { get; }
     public int Value { get; }
 
-    public Damage(int value, DamageType type)
+    public Damage(int value, DamageType type)   //What?
     {
         Value = value;
         Type = type;
