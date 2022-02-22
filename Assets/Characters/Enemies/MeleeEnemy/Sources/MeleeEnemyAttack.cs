@@ -10,7 +10,7 @@ namespace Platformer.Characters.Enemy.MeleeEnemy
     {
         [SerializeField] private float _attackDuration = 1f;
         private Collider2D _collision;
-        private int _damage;
+        private Damage _damage;
 
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -31,19 +31,34 @@ namespace Platformer.Characters.Enemy.MeleeEnemy
             yield return null;
         }
 
-        public IEnumerator Attack(int damage)
-        {
-            _damage = damage;
-            _collision.enabled = true;
+        //public IEnumerator Attack(int damage)
+        //{
+        //    _damage = damage;
+        //    _collision.enabled = true;
             
-            yield return new WaitForSeconds(_attackDuration);
+        //    yield return new WaitForSeconds(_attackDuration);
             
-            _collision.enabled = false;
-        }
+        //    _collision.enabled = false;
+        //}
 
         public void UpdateDirection(Direction direction)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerator Attack(IDamageable target, Damage damage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator Attack(Damage damage)
+        {
+            _damage = damage;
+            _collision.enabled = true;
+
+            yield return new WaitForSeconds(_attackDuration);
+
+            _collision.enabled = false;
         }
     }
 }

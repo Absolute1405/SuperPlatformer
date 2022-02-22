@@ -19,3 +19,4 @@ public class PlayerConfig : ScriptableObject
     public float Acceleration => _acceleration;
     public int MaxSleep => _maxSleep;
 }
+ 

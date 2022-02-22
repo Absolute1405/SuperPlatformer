@@ -12,6 +12,8 @@
 
 public enum DamageType
 {
-    None, Physical, Light, 
-    Dark, Fire, Water, Wind, Earth
+    None, Physical, Stab,
+    Light, Darkness, Fire,
+    Water, Wind, Earth,
+    Lightning, Void
 }

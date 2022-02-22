@@ -25,6 +25,20 @@ public class ShootingAttack : MonoBehaviour, IAttack
         yield return null;
     }
 
+    public IEnumerator Attack(IDamageable target, Damage damage)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IEnumerator Attack(Damage damage)
+    {
+        Vector2 arrowPosition = transform.position;
+        arrowPosition += DirectionGetter.GetVectorFromDirection(_direction.Value) * _spawnOffset;
+        var arrow = Instantiate(_prefab, arrowPosition, Quaternion.identity, transform);
+        arrow.Initialize(_direction.Value);
+        yield return null;
+    }
+
     public void Initialize()
     {
         _direction = GetComponent<ICharacterDirection>();

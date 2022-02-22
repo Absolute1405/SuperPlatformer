@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack :MonoBehaviour, IAttack
 {
-    [SerializeField] private int _damage = 10;
+    [SerializeField] private Damage _damage;
     [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private float _attackDuration = 1f;
 

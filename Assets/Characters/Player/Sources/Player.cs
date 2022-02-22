@@ -43,10 +43,10 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
 
         _health.ValueChanged += (x) => HealthChanged?.Invoke(x);
 
-        var stamina = new Stamina(_maxStamina);
+        var stamina = new Stat(_maxStamina);
         stamina.ValueChanged += (x) => StaminaChanged?.Invoke(x);
 
-        var sleep = new Sleep(config.MaxSleep);
+        var sleep = new Stat(config.MaxSleep);
         sleep.ValueChanged += (x) => SleepChanged?.Invoke(x);
 
         _statService = new PlayerStatService(stamina, _health, sleep);
