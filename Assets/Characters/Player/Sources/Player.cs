@@ -1,4 +1,5 @@
 using System;
+using pEventBus;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
         _acceleration = config.Acceleration;
 
         _statService = new PlayerStatService(config.MaxStamina,config.MaxHealth,config.MaxSleep);
+        _statService.HealthChanged += OnHealthChanged;
 
         _direction.ValueChanged += _attack.UpdateDirection;
         _physics.Initialize(_jumpForce, _maxSpeed, _acceleration);
@@ -96,6 +98,21 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     {
         _animations.Death();
         _physics.SetActive(false);
+    }
+
+    public void OnHealthChanged(int value)
+    {
+        EventBus<PlayerHealthChangedEvent>.Raise(new PlayerHealthChangedEvent(value));
+    }
+}
+
+public struct PlayerHealthChangedEvent : IEvent
+{
+    public int Value { get; }
+
+    public PlayerHealthChangedEvent(int value)
+    {
+        Value = value;
     }
 }
 

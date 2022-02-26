@@ -393,6 +393,11 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5816645050744971454, guid: d164e12a840996d4b90120c81015eb83,
+        type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9038203013761970044, guid: d164e12a840996d4b90120c81015eb83,
         type: 3}
       propertyPath: m_RootOrder

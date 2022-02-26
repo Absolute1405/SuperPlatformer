@@ -13,7 +13,7 @@ public class PlayerUI : MonoBehaviour
 
     public void Initialize(PlayerConfig config)
     {
-        _healthBar.Initialize(config.MaxHealth);
+        //_healthBar.Initialize(config.MaxHealth);
         _staminaBar.Initialize(config.MaxStamina);
         _sleepBar.Initialize(config.MaxSleep);
     }
