@@ -27,6 +27,7 @@ public class ShootingEnemy : Enemy
 
     protected override void OnAbandoned()
     {
+        base.OnAbandoned();
         StopAllCoroutines();
         _animator.Death();
         Destroy(gameObject);

@@ -32,7 +32,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         _statBar.Initialize(Health.MaxValue);
         Stats.HealthChanged += OnHit;
         Health.SetFull(); //TODO
-        Health.Abandoned += OnAbandoned; //TODO
+        Health.Abandoned += OnAbandoned;
     }
 
     public void TakeDamage(Damage damage)
@@ -42,7 +42,10 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected abstract IEnumerator LifeCycle();
 
-    protected abstract void OnAbandoned();
+    protected virtual void OnAbandoned()
+    {
+        gameObject.SetActive(false);
+    }
 
     protected virtual void OnHit(int value)
     {

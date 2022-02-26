@@ -15,6 +15,6 @@ public class FollowTrap : Trap, IFollowTrap
 
     public override void Initialize()
     {
-        throw new System.NotImplementedException();
+        base.Initialize();
     }
 }

@@ -36,6 +36,7 @@ public class MeleeEnemy : Enemy
 
     protected override void OnAbandoned()
     {
+        base.OnAbandoned();
         _movement.Stop();
         StopAllCoroutines();
         _animator.Death();
