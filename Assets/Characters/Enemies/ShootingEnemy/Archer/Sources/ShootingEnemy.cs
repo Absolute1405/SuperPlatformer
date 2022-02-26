@@ -16,11 +16,20 @@ public class ShootingEnemy : Enemy
         PassArgument = _rangeCollider.size.x;
         ArcherConfig archerConfig = config as ArcherConfig;
         _delay = archerConfig.AttackDelay;
+        
+    }
+
+    protected override void OnHit(int value)
+    {
+        base.OnHit(value);
+        _animator.Hurt();
     }
 
     protected override void OnAbandoned()
     {
         StopAllCoroutines();
+        _animator.Death();
+        Destroy(gameObject);
     }
 
     protected override IEnumerator LifeCycle()

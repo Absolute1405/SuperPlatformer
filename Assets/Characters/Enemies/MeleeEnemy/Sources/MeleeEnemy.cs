@@ -38,6 +38,13 @@ public class MeleeEnemy : Enemy
     {
         _movement.Stop();
         StopAllCoroutines();
+        _animator.Death();
+    }
+
+    protected override void OnHit(int value)
+    {
+        base.OnHit(value);
+        _animator.Hurt();
     }
 
     private void Start()
