@@ -2,7 +2,7 @@ using System;
 using pEventBus;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
+public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn, IEventReceiver<InputHorizontalEvent>, IEventReceiver<InputSpaceEvent>, IEventReceiver<InputLMouseEvent>
 {
     [Header("Components")]
     [SerializeField] private PlayerPhysics _physics;
@@ -19,7 +19,15 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     
     private PlayerStatService _statService;
 
-    
+    private void Awake()
+    {
+        EventBus.Register(this);
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.UnRegister(this);
+    }
 
     public void Init(Vector3 startPosition, PlayerConfig config)
     {
@@ -38,12 +46,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
         _attack.Initialize(_weapon); // tmp weapon
     }
 
-    public void Attack()
-    {
-        _attack.StartCoroutine(_attack.Attack());
-        _animations.Attack();
-    }
-
     public void Respawn(Vector3 point)
     {
         _statService.SetFullHealth();
@@ -52,37 +54,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
         _physics.SetActive(true);
         _animations.Revive();
     }
-
-    public void Jump()
-    {
-        
-        if(!_physics.Grounded)
-        {
-            return;
-        }
-        _physics.Jump();
-        _statService.Action(_StaminDamage);
-    }
-
-    public void Move(float input)
-    {
-        _animations.Move(Mathf.Approximately(input,0) == false);
-
-        _physics.Move(input);
-
-        if (input < 0)
-        {
-            _direction.Set(Direction.Left);
-        }
-        else if (input > 0)
-        {
-            _direction.Set(Direction.Right);
-        }
-
-        _animations.SetFlip(_direction.Value == Direction.Left);
-
-    }
-    
 
     public void TakeDamage(Damage damage)
     {
@@ -103,6 +74,41 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn
     public void OnHealthChanged(int value)
     {
         EventBus<PlayerHealthChangedEvent>.Raise(new PlayerHealthChangedEvent(value));
+    }
+
+    public void OnEvent(InputHorizontalEvent e)
+    {
+        var input = e.Value;
+        _animations.Move(Mathf.Approximately(input, 0) == false);
+
+        _physics.Move(input);
+
+        if (input < 0)
+        {
+            _direction.Set(Direction.Left);
+        }
+        else if (input > 0)
+        {
+            _direction.Set(Direction.Right);
+        }
+
+        _animations.SetFlip(_direction.Value == Direction.Left);
+    }
+
+    public void OnEvent(InputSpaceEvent e)
+    {
+        if (!_physics.Grounded)
+        {
+            return;
+        }
+        _physics.Jump();
+        _statService.Action(_StaminDamage);
+    }
+
+    public void OnEvent(InputLMouseEvent e)
+    {
+            _attack.StartCoroutine(_attack.Attack());
+            _animations.Attack();
     }
 }
 

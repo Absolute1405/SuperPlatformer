@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 1
   _maxStamina: 100
-  _damage: 10
   _jumpForce: 4
-  _maxSpeed: 15
+  _maxSpeed: 40
   _acceleration: 0.8
   _maxSleep: 5

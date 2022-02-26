@@ -1,20 +1,16 @@
 ﻿using System;
 using UnityEngine;
+using pEventBus;
 
 public class InputController : MonoBehaviour
 {
-    public event Action<float> HorizontalAxisChanged;
-    public event Action SpacePressed;
-    public event Action LMousePressed;
-
     private void Update()
     {
-        HorizontalAxisChanged?.Invoke(Input.GetAxis("Horizontal"));
+        EventBus<InputHorizontalEvent>.Raise(new InputHorizontalEvent(Input.GetAxis("Horizontal")));
 
-        
         if (Input.GetKeyDown(KeyCode.Space))
-            SpacePressed?.Invoke();
+            EventBus<InputSpaceEvent>.Raise(new InputSpaceEvent());
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            LMousePressed?.Invoke();
+            EventBus<InputLMouseEvent>.Raise(new InputLMouseEvent());
     }
 }

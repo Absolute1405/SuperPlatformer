@@ -6,7 +6,6 @@ public class LevelInitializator : MonoBehaviour
     [SerializeField] private EnemyContainer[] _enemyContainers;
     [SerializeField] private TrapContainer _trapContainer;
     [SerializeField] private Player _playerPrefab;
-    [SerializeField] private InputController _input;
     [SerializeField] private PlayerConfig _playerConfig;
     [SerializeField] private PlayerUI _UIPrefab;
     [SerializeField] private LevelController _levelController;
@@ -30,14 +29,7 @@ public class LevelInitializator : MonoBehaviour
         _trapContainer.Initialize();
 
         _player = Instantiate(_playerPrefab);
-        _input.SpacePressed += _player.Jump;
-        _input.LMousePressed += _player.Attack;
-        _input.HorizontalAxisChanged += _player.Move;
-
         _player.Init(_levelController.StartPosition, _playerConfig);
-        //_player.HealthChanged += _UI.HealthBar.RefreshBar;
-        //_player.StaminaChanged += _UI.StaminaBar.RefreshBar;
-        //_player.SleepChanged += _UI.SleepBar.RefreshBar;
 
         ////TO DO
         //_player.Died += () => _levelController.ReturnToLastPoint(_player);
