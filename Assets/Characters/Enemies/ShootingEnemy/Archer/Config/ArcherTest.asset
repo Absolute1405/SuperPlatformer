@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c12b827309497ef4e9e445c90e6d501a, type: 3}
-  m_Name: V1
+  m_Name: ArcherTest
   m_EditorClassIdentifier: 
   _damage: 10
   _maxHealth: 50
+  _weapon: {fileID: 11400000, guid: 6e477e8bfc4cb4049ab02b9680479d5f, type: 2}
   _attackRange: 10
   _attackDelay: 2

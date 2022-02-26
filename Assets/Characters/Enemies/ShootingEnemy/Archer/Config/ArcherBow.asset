@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArcherBow
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
-  _damageType: 0
-  _damage: 0
+  _damageType: 1
+  _damage: 10

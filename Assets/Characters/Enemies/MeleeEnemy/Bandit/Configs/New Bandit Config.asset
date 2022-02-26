@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 10
   _maxHealth: 100
+  _weapon: {fileID: 11400000, guid: b3e804a66a5155b4e850df2c0550b75f, type: 2}
   _moveSpeed: 1

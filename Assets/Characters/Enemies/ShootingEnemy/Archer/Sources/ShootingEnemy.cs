@@ -7,8 +7,9 @@ public class ShootingEnemy : Enemy
     [SerializeField] private BoxCollider2D _rangeCollider;
     [SerializeField] private EnemyAnimator _animator;
     [SerializeField] private float _delayAnimation;
-    public float PassArgument { get; private set; } 
+    public float PassArgument { get; private set; }
     private float _delay;
+    
     public override void Initialize(EnemyConfig config)
     {
         base.Initialize(config);
