@@ -1,6 +1,6 @@
 ﻿using System;
-
-public class PlayerStatService
+using pEventBus;
+public class PlayerStatService: IEventReceiver<InitializeBarEvent>, IEventReceiver<RefreshBarEvent>
 {
     private const int _damage = 5; // TODO to config
     private readonly Stat _stamina;
@@ -60,5 +60,10 @@ public class PlayerStatService
 
         _health.Decrease(damage.Value);
          
+    }
+
+    public void OnEvent(InitializeBarEvent e)
+    {
+        _health.SetFull
     }
 }
