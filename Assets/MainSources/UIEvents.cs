@@ -22,3 +22,14 @@ public struct PlayerStaminaBarEvent : IEvent
         MaxValue = maxValue;
     }
 }
+public struct PlayerSleepBarEvent : IEvent
+{
+    public int Value { get; }
+    public int MaxValue { get; }
+
+    public PlayerSleepBarEvent(int value, int maxValue)
+    {
+        Value = value;
+        MaxValue = maxValue;
+    }
+}

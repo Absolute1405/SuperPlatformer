@@ -56,8 +56,8 @@ public class PlayerStatService
 
     private void OnStaminaChanged(int value) 
         => EventBus<PlayerStaminaBarEvent>.Raise(new PlayerStaminaBarEvent(_stamina.Value, _stamina.MaxValue));
-    private void OnSleepChanged(int value) => SleepChanged?.Invoke(value);
-
+    private void OnSleepChanged(int value) 
+        =>EventBus<PlayerSleepBarEvent>.Raise(new PlayerSleepBarEvent(_sleep.Value, _sleep.MaxValue));
     private void OnHealthChanged(int value) 
         => EventBus<PlayerHealthBarEvent>.Raise(new PlayerHealthBarEvent(_health.Value, _health.MaxValue));
 
