@@ -103,8 +103,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn, IEventRe
 
     public void OnEvent(InputLMouseEvent e)
     {
-            _attack.StartCoroutine(_attack.Attack());
-            _animations.Attack();
+        _attack.StartCoroutine(_attack.Attack());
+        _animations.Attack();
     }
 }
 
