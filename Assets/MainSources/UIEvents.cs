@@ -1,17 +1,24 @@
 ﻿using pEventBus;
-public struct InitializeBarEvent : IEvent
-{
-    public int MaxValue { get; }
-    public InitializeBarEvent(int maxvalue)
-    {
-        MaxValue = maxvalue;
-    }
-}
-public struct RefreshBarEvent : IEvent
+public struct PlayerHealthBarEvent : IEvent
 {
     public int Value { get; }
-    public RefreshBarEvent(int value)
+    public int MaxValue { get; }
+
+    public PlayerHealthBarEvent(int value, int maxValue)
     {
         Value = value;
+        MaxValue = maxValue;
+    }
+}
+
+public struct PlayerStaminaBarEvent : IEvent
+{
+    public int Value { get; }
+    public int MaxValue { get; }
+
+    public PlayerStaminaBarEvent(int value, int maxValue)
+    {
+        Value = value;
+        MaxValue = maxValue;
     }
 }

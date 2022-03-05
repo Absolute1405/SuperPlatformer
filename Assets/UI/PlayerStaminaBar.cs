@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using pEventBus;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthBar : MonoBehaviour, IEventReceiver<PlayerHealthBarEvent>
+public class PlayerStaminaBar : MonoBehaviour, IEventReceiver<PlayerStaminaBarEvent>
 {
     private Image bar => GetComponent<Image>();
     private int _maxValue = 100;
@@ -20,7 +19,7 @@ public class PlayerHealthBar : MonoBehaviour, IEventReceiver<PlayerHealthBarEven
         EventBus.UnRegister(this);
     }
 
-    public void OnEvent(PlayerHealthBarEvent e)
+    public void OnEvent(PlayerStaminaBarEvent e)
     {
         bar.fillAmount = (float)e.Value / _maxValue;
     }

@@ -1,15 +1,13 @@
 ﻿using System;
 using pEventBus;
-public class PlayerStatService: IEventReceiver<InitializeBarEvent>, IEventReceiver<RefreshBarEvent>
+public class PlayerStatService
 {
     private const int _damage = 5; // TODO to config
     private readonly Stat _stamina;
     private readonly Stat _health;
     private readonly Stat _sleep;
 
-    public event Action<int> StaminaChanged;
     public event Action<int> SleepChanged;
-    public event Action<int> HealthChanged;
     public event Action Death;
 
     public PlayerStatService(int maxStamina, int maxHealth, int maxSleep)
@@ -27,6 +25,13 @@ public class PlayerStatService: IEventReceiver<InitializeBarEvent>, IEventReceiv
     public void SetFullHealth()
     {
         _health.SetFull();
+        EventBus<PlayerHealthBarEvent>.Raise(new PlayerHealthBarEvent(_health.Value, _health.MaxValue));
+    }
+
+    public void SetFullStamina()
+    {
+        _stamina.SetFull();
+        EventBus<PlayerHealthBarEvent>.Raise(new PlayerHealthBarEvent(_health.Value, _health.MaxValue));
     }
 
     public void Action(int staminaRequired)
@@ -49,9 +54,13 @@ public class PlayerStatService: IEventReceiver<InitializeBarEvent>, IEventReceiv
         }
     }
 
-    private void OnStaminaChanged(int value) => StaminaChanged?.Invoke(value);
+    private void OnStaminaChanged(int value) 
+        => EventBus<PlayerStaminaBarEvent>.Raise(new PlayerStaminaBarEvent(_stamina.Value, _stamina.MaxValue));
     private void OnSleepChanged(int value) => SleepChanged?.Invoke(value);
-    private void OnHealthChanged(int value) => HealthChanged?.Invoke(value);
+
+    private void OnHealthChanged(int value) 
+        => EventBus<PlayerHealthBarEvent>.Raise(new PlayerHealthBarEvent(_health.Value, _health.MaxValue));
+
     private void OnDeath() => Death?.Invoke();
 
     public void TakeDamage(Damage damage)
@@ -60,15 +69,5 @@ public class PlayerStatService: IEventReceiver<InitializeBarEvent>, IEventReceiv
 
         _health.Decrease(damage.Value);
          
-    }
-
-    public void OnEvent(InitializeBarEvent e)
-    {
-        _health.SetFull();
-    }
-
-    public void OnEvent(RefreshBarEvent e)
-    {
-        throw new NotImplementedException();
     }
 }

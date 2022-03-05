@@ -36,7 +36,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn, IEventRe
         _acceleration = config.Acceleration;
 
         _statService = new PlayerStatService(config.MaxStamina,config.MaxHealth,config.MaxSleep);
-        _statService.HealthChanged += OnHealthChanged;
 
         _direction.ValueChanged += _attack.UpdateDirection;
         _physics.Initialize(_jumpForce, _maxSpeed, _acceleration);
@@ -49,7 +48,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn, IEventRe
     public void Respawn(Vector3 point)
     {
         _statService.SetFullHealth();
-        //HealthChanged?.Invoke(_health.Value); TODO
+        _statService.SetFullStamina();
+
         transform.position = point;
         _physics.SetActive(true);
         _animations.Revive();
@@ -58,6 +58,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn, IEventRe
     public void TakeDamage(Damage damage)
     {
         _statService.TakeDamage(damage);
+        //animation etc.
     }
 
     private void FixedUpdate()
@@ -69,11 +70,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn, IEventRe
     {
         _animations.Death();
         _physics.SetActive(false);
-    }
-
-    public void OnHealthChanged(int value)
-    {
-        EventBus<PlayerHealthChangedEvent>.Raise(new PlayerHealthChangedEvent(value));
     }
 
     public void OnEvent(InputHorizontalEvent e)
@@ -112,13 +108,5 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn, IEventRe
     }
 }
 
-public struct PlayerHealthChangedEvent : IEvent
-{
-    public int Value { get; }
 
-    public PlayerHealthChangedEvent(int value)
-    {
-        Value = value;
-    }
-}
 
