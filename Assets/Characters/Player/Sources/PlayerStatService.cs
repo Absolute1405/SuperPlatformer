@@ -64,6 +64,11 @@ public class PlayerStatService: IEventReceiver<InitializeBarEvent>, IEventReceiv
 
     public void OnEvent(InitializeBarEvent e)
     {
-        _health.SetFull
+        _health.SetFull();
+    }
+
+    public void OnEvent(RefreshBarEvent e)
+    {
+        throw new NotImplementedException();
     }
 }
