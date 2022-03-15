@@ -18,6 +18,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn, IEventRe
     private float _acceleration = 0.2f;
     
     private PlayerStatService _statService;
+    private PlayerStateMachine _stateMachine;
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn, IEventRe
         _acceleration = config.Acceleration;
 
         _statService = new PlayerStatService(config.MaxStamina,config.MaxHealth,config.MaxSleep);
+        _stateMachine = new PlayerStateMachine(_animations, _physics, _attack);
 
         _direction.ValueChanged += _attack.UpdateDirection;
         _physics.Initialize(_jumpForce, _maxSpeed, _acceleration);
@@ -75,9 +77,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn, IEventRe
     public void OnEvent(InputHorizontalEvent e)
     {
         var input = e.Value;
-        _animations.Move(Mathf.Approximately(input, 0) == false);
-
-        _physics.Move(input);
 
         if (input < 0)
         {
@@ -89,22 +88,19 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerRespawn, IEventRe
         }
 
         _animations.SetFlip(_direction.Value == Direction.Left);
+        _stateMachine.Move(input);
     }
 
     public void OnEvent(InputSpaceEvent e)
     {
-        if (!_physics.Grounded)
-        {
-            return;
-        }
-        _physics.Jump();
-        _statService.Action(_StaminDamage);
+        _stateMachine.Jump(_physics.Grounded);
+
+        _statService.Action(_StaminDamage); //TODO
     }
 
     public void OnEvent(InputLMouseEvent e)
     {
-        _attack.StartCoroutine(_attack.Attack());
-        _animations.Attack();
+        _stateMachine.Attack();
     }
 }
 

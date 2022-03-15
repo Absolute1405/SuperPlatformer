@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : MonoBehaviour
+public class PlayerIdleState : PlayerState
 {
-    // Start is called before the first frame update
-    void Start()
+    public override bool NextStateAvailable(PlayerState state)
     {
-        
+        return true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnStateEnter()
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnStateExit()
+    {
+        throw new System.NotImplementedException();
     }
 }

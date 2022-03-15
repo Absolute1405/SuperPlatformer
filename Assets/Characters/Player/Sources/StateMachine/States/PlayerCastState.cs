@@ -2,17 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCastState : MonoBehaviour
+public class PlayerCastState : PlayerState
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Jump(PlayerPhysics physics, bool grounded)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Attack(CharacterAttack attack)
     {
         
+    }
+
+    public override void Move(PlayerPhysics physics, float value)
+    {
+        
+    }
+
+    public override void OnStateEnter()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnStateExit()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override bool NextStateAvailable(PlayerState state)
+    {
+        if (state is PlayerIdleState) return true;
+
+        return false;
     }
 }

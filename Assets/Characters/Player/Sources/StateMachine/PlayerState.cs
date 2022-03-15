@@ -1,23 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class PlayerState
 {
-    public List<PlayerState> PossibleNextStates { get; private set; }
-    protected PlayerAnimator animator { get; private set; }
-
-    protected PlayerState(PlayerAnimator animator)
-    {
-        PossibleNextStates = new List<PlayerState>();
-        this.animator = animator;
-    }
-
     public abstract void OnStateEnter();
     public abstract void OnStateExit();
 
-    public void AddPossibleNextStates(params PlayerState[] states)
+    public virtual void Jump(PlayerPhysics physics, bool grounded)
     {
-        PossibleNextStates.AddRange(states);
+        if (grounded) physics.Jump();
     }
+
+    public virtual void Move(PlayerPhysics physics, float value)
+    {
+        physics.Move(value);
+    }
+
+    public virtual void Attack(CharacterAttack attack)
+    {
+        attack.StartCoroutine(attack.Attack());
+    }
+
+    public abstract bool NextStateAvailable(PlayerState state);
 }

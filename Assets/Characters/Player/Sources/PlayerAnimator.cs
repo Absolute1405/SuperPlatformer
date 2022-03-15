@@ -18,7 +18,6 @@ public class PlayerAnimator : MonoBehaviour
     {
         _animator.SetTrigger(_attackTrigger);
     }
-
     public void Revive()
     {
         _reviveEffect.Play();
