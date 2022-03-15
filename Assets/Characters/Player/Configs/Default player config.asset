@@ -17,4 +17,4 @@ MonoBehaviour:
   _jumpForce: 4
   _maxSpeed: 40
   _acceleration: 0.8
-  _maxSleep: 5
+  _maxSleep: 15

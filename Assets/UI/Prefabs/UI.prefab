@@ -246,6 +246,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1796938157856733418, guid: 09773b5d49aa51840b5aea4f4f38bcd2,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1796938157856733419, guid: 09773b5d49aa51840b5aea4f4f38bcd2,
         type: 3}
       propertyPath: m_Camera
@@ -255,6 +260,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerBars
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584195742040936774, guid: 09773b5d49aa51840b5aea4f4f38bcd2,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5514956484356624817, guid: 09773b5d49aa51840b5aea4f4f38bcd2,
         type: 3}
@@ -269,12 +279,12 @@ PrefabInstance:
     - target: {fileID: 8301794417590498741, guid: 09773b5d49aa51840b5aea4f4f38bcd2,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 182.06293
+      value: 334.25116
       objectReference: {fileID: 0}
     - target: {fileID: 8301794417590498741, guid: 09773b5d49aa51840b5aea4f4f38bcd2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -91
+      value: -167.09
       objectReference: {fileID: 0}
     - target: {fileID: 8437065453128133983, guid: 09773b5d49aa51840b5aea4f4f38bcd2,
         type: 3}
@@ -290,6 +300,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437065453128133983, guid: 09773b5d49aa51840b5aea4f4f38bcd2,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09773b5d49aa51840b5aea4f4f38bcd2, type: 3}
