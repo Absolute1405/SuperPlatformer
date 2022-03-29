@@ -13,8 +13,6 @@ public class Manager : MonoBehaviour
     private async Task Task()
     {
 
-        await _timer.TamerAsync();
-        Debug.Log("1");
 
     }
 }
