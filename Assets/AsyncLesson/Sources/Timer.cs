@@ -1,36 +1,22 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 using UnityEngine;
-using System.Threading.Tasks;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
     [SerializeField] private Text _timerView;
-    private float _duration;
 
-    public async void Setup(float _duration)
-    { 
-        for(float i=0; i <= 0; i = _duration)
+    public async Task WaitForSeconds(int seconds)
+    {
+        for (int i = seconds; i >= 0; i++)
         {
-            _duration -= Time.deltaTime;
-            _timerView.text = _duration.ToString("F1");
-
-            await Task.Run(() => Stop());
-            Debug.Log("Остановка Выполнена");
+            _timerView.text = i.ToString();
+            await WaitSecond();
         }
     }
 
-    public void TimerUpdate(float Valu)
+    private async Task WaitSecond()
     {
-        
-    }                  
-
-    public void Stop()
-    {
-        Debug.Log("Остановка Выполнена?");
-
+        await Task.Delay(1000);
     }
-
 }
