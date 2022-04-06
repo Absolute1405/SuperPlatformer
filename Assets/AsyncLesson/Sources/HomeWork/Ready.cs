@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class Ready : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Button _button;
+    private TaskCompletionSource<bool> _completionSource;
+    public async Task WaitClick()
     {
-        
-    }
+        _button.onClick.AddListener(OnClick);
 
-    // Update is called once per frame
-    void Update()
+        _completionSource = new TaskCompletionSource<bool>();
+        await _completionSource.Task;
+
+        _button.onClick.RemoveListener(OnClick);
+    }
+    private void OnClick()
     {
-        
+        _completionSource.SetResult(true);
     }
 }

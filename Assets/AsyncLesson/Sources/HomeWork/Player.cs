@@ -13,17 +13,18 @@ namespace Game
 
         public int Score { get; private set; } = 0;
         private const int clickCost=25;
-        private const int delayConst = 1000;
 
         private TaskCompletionSource<int> _clickTask;
 
-        public async Task Play(float time, int maxScore)
+        public async Task Play(int maxScore)
         {
             _button.onClick.AddListener(OnClick);
-            var durationTask = WaitDuration(time);
-            var scoreTask = WaitMaxScore(maxScore);
 
-            await Task.WhenAny(durationTask, scoreTask);
+            while (Score < maxScore)
+            {
+                _clickTask = new TaskCompletionSource<int>();
+                Score = await _clickTask.Task;
+            }
 
             _button.onClick.RemoveListener(OnClick);
         }
@@ -34,23 +35,6 @@ namespace Game
             _text.text = "Score " + Score.ToString();
 
             _clickTask.SetResult(Score);
-        }
-
-        private async Task WaitDuration(float seconds)
-        {
-            var ms = delayConst * seconds;
-            await Task.Delay((int)ms);
-        }
-
-        private async Task WaitMaxScore(int maxScore)
-        {
-            int result = 0;
-
-            while (result < maxScore)
-            {
-                _clickTask = new TaskCompletionSource<int>();
-                result = await _clickTask.Task;
-            }
         }
     }
 }
