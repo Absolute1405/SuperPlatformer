@@ -10,6 +10,8 @@ namespace Game
     {
         [SerializeField] private Button _button;
         [SerializeField] private Text _text;
+        [SerializeField] private int _critFactor = 2;
+        [SerializeField] private CriticalHit _critical;
 
         public int Score { get; private set; } = 0;
         private const int clickCost=25;
@@ -31,7 +33,15 @@ namespace Game
 
         private void OnClick()
         {
-            Score += clickCost;
+            if (_critical.theCrit)
+            {
+                Score += clickCost*_critFactor;
+            }
+            else
+            {
+                Score += clickCost;
+            }
+            
             _text.text = "Score " + Score.ToString();
 
             _clickTask.SetResult(Score);
