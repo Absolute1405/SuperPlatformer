@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace Game
         [SerializeField] private Timer _timer;
         [SerializeField] private Ready _readyButton;
 
+        private bool _gameFinished;
+
         private void Start()
         {
             PlayInOrder();
@@ -23,43 +26,36 @@ namespace Game
 
         public async void  PlayInOrder()
         {
-            Player winner;
+            player1.Won += OnFinish;
+            player2.Won += OnFinish;
 
-            while (true)
+            while (_gameFinished == false)
             {
-                var Winer1 =await PlayOnPlayer(player1);
-                if (Winer1)
-                {
-                    winner = player1;
-                    break;
-                }
+                await PlayOnPlayer(player1);
 
-                var Winer2 = await PlayOnPlayer(player2);
-
-                if (Winer2)
-                {
-                    winner = player2;
+                if (_gameFinished)
                     break;
-                }
+
+                await PlayOnPlayer(player2);
             }
-
-            OnFinish(winner);
         }
-        private async Task<bool> PlayOnPlayer(Player player)
+
+        private async Task PlayOnPlayer(Player player)
         {
             await _readyButton.WaitClick();
 
             Debug.Log($"{player.gameObject.name} turn");
-            var Play = player.Play(_winScore);
-            var timer = _timer.WaitForSeconds(_turnsDuration);
 
-            await Task.WhenAny(Play, timer);
-
-            return player.Score >= _winScore;
+            player.StartTurn(_winScore);
+            await _timer.WaitForSeconds(_turnsDuration);
+            player.StopTurn();
         }
 
-        private void OnFinish(Player player) 
+        private void OnFinish(Player player)
         {
+            _gameFinished = true;
+            _timer.StopTimer();
+            player.StopTurn();
             Debug.Log($"{player.gameObject.name} won");
         }
 

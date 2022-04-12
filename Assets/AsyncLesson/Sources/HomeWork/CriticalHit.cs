@@ -1,32 +1,14 @@
-﻿using System.Collections;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class CriticalHit : MonoBehaviour
 {
-    private System.Random random;
-    public bool theCrit => TheCritical();
-    private void Start()
-    {
-        random= new System.Random();
-        var _vale = random.Next(0, 100);
-        Debug.Log(_vale);
+    [SerializeField] private int _criticalChance = 10;
 
-    }
-    private bool TheCritical()
+    public bool TakeCriticalByChance()
     {
-        bool Bool=false;
-        var _vale = random.Next(0, 100);
-        if (_vale <= 10)
-        {
-            Bool = true;
-            return Bool;
-        }
-        else
-        {
-            return Bool;
-        }
+        var value = UnityEngine.Random.Range(0, 100);
+        return value <= _criticalChance;
     }
     
 }
