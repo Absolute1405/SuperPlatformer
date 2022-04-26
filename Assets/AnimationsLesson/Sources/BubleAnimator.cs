@@ -1,20 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BubleAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animation;
-    private Bubbul_Behaviour _behaviour;
+    [SerializeField] private string _startBool = "Start";
+    private BubbleBehaviour _behaviour;
+
     void Start()
     {
-        _behaviour = _animation.GetBehaviour<Bubbul_Behaviour>();
-        _animation.SetBool("Start", true);
-        _behaviour.ExitState += Destroyind;
+        _behaviour = _animation.GetBehaviour<BubbleBehaviour>();
+        _animation.SetBool(_startBool, true);
+        _behaviour.ExitState += DestroyObject;
     }
-    private void Destroyind(bool bol)
+
+    private void OnDestroy()
     {
-        _behaviour.ExitState -= Destroyind;
+        _behaviour.ExitState -= DestroyObject;
+    }
+
+    private void DestroyObject()
+    {
         Destroy(gameObject);
     }
 

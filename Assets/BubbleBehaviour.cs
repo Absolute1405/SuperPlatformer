@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bubbul_Behaviour : StateMachineBehaviour
+public class BubbleBehaviour : StateMachineBehaviour
 {
-    public event Action<bool> ExitState;
+    public event Action ExitState;
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        ExitState?.Invoke(true);
+        ExitState?.Invoke();
     }
 }
