@@ -4,19 +4,32 @@ using UnityEngine;
 
 namespace AppleGame
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Player : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        [SerializeField] private int _jumpForce;
 
+        private Transform _transform;
+        private Rigidbody2D _rigidbody;
+
+        private void Awake()
+        {
+            _transform = GetComponent<Transform>();
+            _rigidbody = GetComponent<Rigidbody2D>();
+            
+        }
+        private void Update()
+        {
+            if (Input.GetButtonDown("Space"))
+            {
+                Jamping();
+            }
+        }
+        private void Jamping()
+        {
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }
 
