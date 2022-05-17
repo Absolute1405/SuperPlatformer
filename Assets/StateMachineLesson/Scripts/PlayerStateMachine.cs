@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace AppleGame
 {
     public class PlayerStateMachine
@@ -16,6 +17,7 @@ namespace AppleGame
             _run = new PlayerRunState();
             _currentState = _onAir;
         }
+
         public void Jump()
         {
             _currentState.Jump();
@@ -31,14 +33,17 @@ namespace AppleGame
             _currentState.OnEnter();
 
         }
+
         public void SetOnAir()
         {
             SetState(_onAir);
         }
+
         public void SetRun()
         {
             SetState(_run);
         }
+        
         public void SetIdle()
         {
             SetState(_idle);
