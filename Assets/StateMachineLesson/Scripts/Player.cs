@@ -18,7 +18,7 @@ namespace AppleGame
 
         private void Update()
         {
-            _movement.Move(Input.GetAxis("Horizontal"));
+            //_movement.Move(Input.GetAxis("Horizontal"));
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
