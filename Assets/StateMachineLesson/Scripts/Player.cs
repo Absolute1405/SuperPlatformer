@@ -7,8 +7,14 @@ namespace AppleGame
 {
     public class Player : MonoBehaviour
     {
+        private PlayerStateMachine _stateMachine;
         [SerializeField] private PlayerMovement _movement;
         [SerializeField] private PlayerJump _jump;
+
+        private void Awake()
+        {
+            _stateMachine = new PlayerStateMachine();
+        }
 
         private void Update()
         {
@@ -17,8 +23,10 @@ namespace AppleGame
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _jump.Jump();
+                
             }
         }
+
     }
 }
 
