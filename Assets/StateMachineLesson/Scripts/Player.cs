@@ -14,21 +14,36 @@ namespace AppleGame
 
         private void Awake()
         {
-            _stateMachine = new PlayerStateMachine();
-            _groundCheck.OnAir += _jump.ChangeAirState;
+            _stateMachine = new PlayerStateMachine(_jump);
+            _groundCheck.OnAir += OnGroud;
+
         }
 
         private void Update()
         {
             _movement.Move(Input.GetAxis("Horizontal"));
-
+            
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _jump.Jump();
+                _stateMachine.Jump();
                 
             }
+
+        }
+        private void OnGroud(bool onAir)
+        {
+            if (!onAir)
+            {
+                _stateMachine.SetIdle();
+            }
+            else
+            {
+                _stateMachine.SetOnAir();
+            }
+            
         }
     }
+    
 }
 
 

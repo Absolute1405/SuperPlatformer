@@ -10,11 +10,11 @@ namespace AppleGame
         private readonly PlayerOnAirState _onAir;
         private readonly PlayerIdleState _idle;
         private readonly PlayerRunState _run;
-        public PlayerStateMachine()
+        public PlayerStateMachine(PlayerJump jump)
         {
             _onAir = new PlayerOnAirState();
-            _idle = new PlayerIdleState();
-            _run = new PlayerRunState();
+            _idle = new PlayerIdleState(jump);
+            _run = new PlayerRunState(jump);
             _currentState = _onAir;
         }
 
@@ -48,6 +48,7 @@ namespace AppleGame
         {
             SetState(_idle);
         }
+        
     }
 }
 

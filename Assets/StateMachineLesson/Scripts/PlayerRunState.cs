@@ -2,6 +2,11 @@
 {
     public class PlayerRunState : PlayerState
     {
+        private PlayerJump _jump;
+        public PlayerRunState (PlayerJump Jump)
+        {
+
+        }
         public override void Attack()
         {
             throw new System.NotImplementedException();

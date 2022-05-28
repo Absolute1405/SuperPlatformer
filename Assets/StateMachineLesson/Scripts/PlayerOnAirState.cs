@@ -5,6 +5,7 @@ namespace AppleGame
 {
     public class PlayerOnAirState : PlayerState
     {
+        
         public override void Attack()
         {
             throw new System.NotImplementedException();
