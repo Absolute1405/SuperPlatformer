@@ -10,10 +10,12 @@ namespace AppleGame
         private PlayerStateMachine _stateMachine;
         [SerializeField] private PlayerMovement _movement;
         [SerializeField] private PlayerJump _jump;
+        [SerializeField] private PlayerGroundCheck _groundCheck;
 
         private void Awake()
         {
             _stateMachine = new PlayerStateMachine();
+            _groundCheck.OnAir += _jump.ChangeAirState;
         }
 
         private void Update()
@@ -26,7 +28,6 @@ namespace AppleGame
                 
             }
         }
-
     }
 }
 
