@@ -17,10 +17,12 @@ namespace AppleGame
         private Rigidbody2D _rigidbody;
         public event Action<bool> OnAir;
         private bool _onAir;
+        
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            
         }
 
         private void Update()
@@ -37,24 +39,35 @@ namespace AppleGame
         }
         
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            OnAir?.Invoke(false);
-            _velocity = 0;
-            _onAir = false;
+            if (collision.GetComponent<BoxCollider2D>())
+            {
+                OnAir?.Invoke(false);
+                _velocity = 0;
+                _onAir = false;
+            }
         }
 
-        private void OnCollisionExit2D(Collision2D collision)
+        private void OnTriggerExit2D(Collider2D collision)
         {
+            
             OnAir?.Invoke(true);
             _onAir = true;
+            
+            
         }
+        
 
         public void Jump()
         {
             var force = Vector2.up * _jumpForce;
             //_rigidbody.AddForce(force, ForceMode2D.Impulse);
-            _velocity += _jumpForce;
+            if (!_onAir)
+            {
+                _velocity += _jumpForce;
+            }
+            
         }
     }
 }
