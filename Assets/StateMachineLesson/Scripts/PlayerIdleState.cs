@@ -5,7 +5,7 @@ namespace AppleGame
     public class PlayerIdleState : PlayerState
     {
         private PlayerJump _jump;
-        private PlayerMovement _movement;
+        
         public PlayerIdleState(PlayerJump jump)
         {
             _jump = jump;
