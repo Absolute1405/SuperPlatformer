@@ -8,7 +8,8 @@ namespace AppleGame
     {
         [SerializeField] private int _groundLayer = 8;
 
-        public event Action<bool> OnAir;
+        public event Action<bool> AirChanged;
+        public bool OnAir { get; private set; }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -25,7 +26,8 @@ namespace AppleGame
             if (_groundLayer != other.gameObject.layer)
                 return;
 
-            OnAir?.Invoke(!value);
+            AirChanged?.Invoke(!value);
+            OnAir = value;
         }
     }
 }

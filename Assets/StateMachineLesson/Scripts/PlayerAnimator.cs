@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace AppleGame
 {
-    public class PlayerAnimatinor : MonoBehaviour
+    public class PlayerAnimator : MonoBehaviour
     {
         [SerializeField] private Animator animator;
         [SerializeField] private string onJump;

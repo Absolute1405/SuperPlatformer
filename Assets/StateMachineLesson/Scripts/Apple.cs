@@ -12,6 +12,8 @@ namespace AppleGame
         [SerializeField] private float _rotTime = 5f;
         [SerializeField] private float _stoneTime = 3f;
 
+        public bool Active => gameObject.activeSelf;
+
 
         private AppleStateMachine _stateMachine;
         private Rigidbody2D _rigidbody;
@@ -58,6 +60,11 @@ namespace AppleGame
         public void Hit()
         {
             _stateMachine.Hit();
+        }
+
+        public void SetActive(bool active)
+        {
+            gameObject.SetActive(active);
         }
     }
 }

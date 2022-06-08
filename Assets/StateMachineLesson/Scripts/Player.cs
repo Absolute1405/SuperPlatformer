@@ -11,20 +11,36 @@ namespace AppleGame
         [SerializeField] private PlayerMovement _movement;
         [SerializeField] private PlayerJump _jump;
         [SerializeField] private PlayerGroundCheck _groundCheck;
-        [SerializeField] private PlayerAnimatinor _playerAnimatinor;
+        [SerializeField] private PlayerAnimator playerAnimator;
 
         private void Awake()
         {
-            _stateMachine = new PlayerStateMachine(_jump,_playerAnimatinor);
-            _groundCheck.OnAir += OnGroud;
-            _stateMachine.SetIdle();
+            _stateMachine = new PlayerStateMachine(_jump,playerAnimator);
+            _groundCheck.AirChanged += _jump.ChangeAirState;
+        }
 
+        private void Start()
+        {
+            _stateMachine.SetIdle();
         }
 
         private void Update()
         {
+            #region IfTest
             _movement.Move(Input.GetAxis("Horizontal"));
-            if (_movement.Moving)
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _stateMachine.Jump();
+
+            }
+            #endregion
+
+            if (_groundCheck.OnAir)
+            {
+                _stateMachine.SetOnAir();
+            }
+            else if (_movement.Moving)
             {
                 _stateMachine.SetRun();
             }
@@ -32,25 +48,6 @@ namespace AppleGame
             {
                 _stateMachine.SetIdle();
             }
-            
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _stateMachine.Jump();
-                
-            }
-
-        }
-        private void OnGroud(bool onAir)
-        {
-            if (!onAir)
-            {
-                _stateMachine.SetIdle();
-            }
-            else
-            {
-                _stateMachine.SetOnAir();
-            }
-            
         }
     }
     

@@ -7,17 +7,18 @@ namespace AppleGame
     public class PlayerStateMachine
     {
         private PlayerState _currentState;
-        private PlayerAnimatinor _playerAnimatinor;
+        private PlayerAnimator _playerAnimator;
         private readonly PlayerOnAirState _onAir;
         private readonly PlayerIdleState _idle;
         private readonly PlayerRunState _run;
-        public PlayerStateMachine(PlayerJump jump, PlayerAnimatinor playerAnimatinor)
+
+        public PlayerStateMachine(PlayerJump jump, PlayerAnimator playerAnimator)
         {
             _onAir = new PlayerOnAirState();
             _idle = new PlayerIdleState(jump);
             _run = new PlayerRunState(jump);
             _currentState = _onAir;
-            _playerAnimatinor = playerAnimatinor;
+            _playerAnimator = playerAnimator;
         }
 
         public void Jump()
@@ -43,19 +44,19 @@ namespace AppleGame
         public void SetOnAir()
         {
             SetState(_onAir);
-            _playerAnimatinor.SetJump();
+            _playerAnimator.SetJump();
         }
 
         public void SetRun()
         {
             SetState(_run);
-            _playerAnimatinor.SetRun();
+            _playerAnimator.SetRun();
         }
         
         public void SetIdle()
         {
             SetState(_idle);
-            _playerAnimatinor.SetIdle();
+            _playerAnimator.SetIdle();
         }
         
     }

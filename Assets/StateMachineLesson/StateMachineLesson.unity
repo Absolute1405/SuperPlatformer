@@ -747,7 +747,7 @@ MonoBehaviour:
   _movement: {fileID: 1369412922}
   _jump: {fileID: 1369412923}
   _groundCheck: {fileID: 678127146}
-  _playerAnimatinor: {fileID: 254008919}
+  playerAnimator: {fileID: 254008919}
 --- !u!4 &1369412921
 Transform:
   m_ObjectHideFlags: 0
