@@ -8,6 +8,7 @@ namespace AppleGame
     public class PlayerMovement : MonoBehaviour
     {
         private Rigidbody2D _rigidbody;
+        public bool Moving => _rigidbody.velocity.x != 0;
 
         [SerializeField] private float _speed;
         private void Awake()

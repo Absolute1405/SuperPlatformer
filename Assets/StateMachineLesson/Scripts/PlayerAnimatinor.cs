@@ -9,12 +9,7 @@ namespace AppleGame
         [SerializeField] private string onJump;
         [SerializeField] private string onIdle;
         [SerializeField] private string onRun;
-        private void Awake()
-        {
-            animator.SetBool(onIdle, true);
-            animator.SetBool(onRun, false);
-            animator.SetBool(onJump, false);
-        }
+        
         public void SetJump()
         {
             animator.SetBool(onIdle, false);

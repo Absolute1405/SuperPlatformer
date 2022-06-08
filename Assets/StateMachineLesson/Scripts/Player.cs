@@ -17,12 +17,21 @@ namespace AppleGame
         {
             _stateMachine = new PlayerStateMachine(_jump,_playerAnimatinor);
             _groundCheck.OnAir += OnGroud;
+            _stateMachine.SetIdle();
 
         }
 
         private void Update()
         {
             _movement.Move(Input.GetAxis("Horizontal"));
+            if (_movement.Moving)
+            {
+                _stateMachine.SetRun();
+            }
+            else
+            {
+                _stateMachine.SetIdle();
+            }
             
             if (Input.GetKeyDown(KeyCode.Space))
             {

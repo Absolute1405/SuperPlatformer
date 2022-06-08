@@ -6,13 +6,15 @@ namespace AppleGame
     {
         private PlayerJump _jump;
         
-        public PlayerIdleState(PlayerJump jump, PlayerAnimatinor playerAnimatinor)
+        
+        public PlayerIdleState(PlayerJump jump)
         {
             _jump = jump;
+            
         }
         public override void Attack()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void Jump()
@@ -22,12 +24,12 @@ namespace AppleGame
 
         public override void OnEnter()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void OnExit()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
