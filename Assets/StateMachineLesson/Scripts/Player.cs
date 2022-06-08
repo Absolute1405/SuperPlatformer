@@ -11,10 +11,11 @@ namespace AppleGame
         [SerializeField] private PlayerMovement _movement;
         [SerializeField] private PlayerJump _jump;
         [SerializeField] private PlayerGroundCheck _groundCheck;
+        [SerializeField] private PlayerAnimatinor _playerAnimatinor;
 
         private void Awake()
         {
-            _stateMachine = new PlayerStateMachine(_jump);
+            _stateMachine = new PlayerStateMachine(_jump,_playerAnimatinor);
             _groundCheck.OnAir += OnGroud;
 
         }

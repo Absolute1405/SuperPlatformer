@@ -5,6 +5,10 @@ namespace AppleGame
 {
     public class PlayerOnAirState : PlayerState
     {
+        public PlayerOnAirState(PlayerAnimatinor playerAnimatinor)
+        {
+
+        }
         
         public override void Attack()
         {

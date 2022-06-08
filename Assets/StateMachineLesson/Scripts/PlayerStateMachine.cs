@@ -10,11 +10,11 @@ namespace AppleGame
         private readonly PlayerOnAirState _onAir;
         private readonly PlayerIdleState _idle;
         private readonly PlayerRunState _run;
-        public PlayerStateMachine(PlayerJump jump)
+        public PlayerStateMachine(PlayerJump jump, PlayerAnimatinor playerAnimatinor)
         {
-            _onAir = new PlayerOnAirState();
-            _idle = new PlayerIdleState(jump);
-            _run = new PlayerRunState(jump);
+            _onAir = new PlayerOnAirState(playerAnimatinor);
+            _idle = new PlayerIdleState(jump,playerAnimatinor);
+            _run = new PlayerRunState(jump,playerAnimatinor);
             _currentState = _onAir;
         }
 
