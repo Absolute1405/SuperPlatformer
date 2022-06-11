@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -12,11 +10,20 @@ namespace AppleGame
         [SerializeField] private float _rotTime = 5f;
         [SerializeField] private float _stoneTime = 3f;
 
-        public bool Active => gameObject.activeSelf;
-
+        public event Action<Apple> Disposed;
 
         private AppleStateMachine _stateMachine;
         private Rigidbody2D _rigidbody;
+
+        public void Initialize()
+        {
+            gameObject.SetActive(false);
+        }
+
+        public void OnSpawn()
+        {
+            transform.localPosition = Vector3.zero;
+        }
 
         private void Awake()
         {
@@ -26,16 +33,16 @@ namespace AppleGame
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.TryGetComponent<Player>(out var player))
-            {
-                _stateMachine.Touch(player);
-            }
-            else // TODO check if ground
-            {
-                _stateMachine.SetGroundedState();
-                _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-                WaitAndRot();
-            }
+            //if (other.gameObject.TryGetComponent<Player>(out var player))
+            //{
+            //    _stateMachine.Touch(player);
+            //}
+            //else // TODO check if ground
+            //{
+            //    _stateMachine.SetGroundedState();
+            //    _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            //    WaitAndRot();
+            //}
         }
 
         private async void WaitAndRot()
@@ -62,9 +69,15 @@ namespace AppleGame
             _stateMachine.Hit();
         }
 
-        public void SetActive(bool active)
+        public void Dispose()
         {
-            gameObject.SetActive(active);
+            OnDispose();
+            Disposed?.Invoke(this);
+        }
+
+        private void OnDispose()
+        {
+            //some logic
         }
     }
 }
