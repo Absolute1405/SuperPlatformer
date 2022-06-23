@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace AppleGame
+namespace FabricGame
 {
-    public class Pool
+    public class CarPool : MonoBehaviour
     {
         private List<GameObject> _objects;
 
-        public Pool(GameObject[] objects)
+        public CarPool(GameObject[] objects)
         {
             foreach (var obj in objects)
             {
@@ -36,5 +36,7 @@ namespace AppleGame
         {
             obj.SetActive(false);
         }
+
+
     }
 }

@@ -13,6 +13,8 @@ namespace AppleGame
         [SerializeField] private PlayerGroundCheck _groundCheck;
         [SerializeField] private PlayerAnimator playerAnimator;
 
+        public event Action<bool> isPositivelyValie;
+
         private void Awake()
         {
             _stateMachine = new PlayerStateMachine(_jump,playerAnimator);
@@ -48,6 +50,10 @@ namespace AppleGame
             {
                 _stateMachine.SetIdle();
             }
+        }
+        public void UpdteScore(bool positively)
+        {
+            
         }
     }
     
