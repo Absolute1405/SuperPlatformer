@@ -33,7 +33,9 @@ namespace FactoryHomework
             }
 
             _pool = new Pool<Car>(cars);
+             
         }
+        
 
         public void Spawn()
         {
