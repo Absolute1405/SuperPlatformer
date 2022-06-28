@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HomeworckJeneric : MonoBehaviour
+public class HomeworckJeneric<T> where T : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private List<T> _objects;
 
-    // Update is called once per frame
-    void Update()
+    public void Push(T[] objects)
     {
-        
+        _objects = new List<T>(objects);
     }
 }
