@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace FactoryHomework
@@ -10,7 +7,7 @@ namespace FactoryHomework
     {
         [SerializeField] private Car _prototype;
         [SerializeField, Min(1)] private int _maxCount = 10;
-        private Factory<Car> _factory;
+        private Factory<Car, CarArgs> _factory;
         [SerializeField] private int _minYposition = -4;
         [SerializeField] private int _maxYposition = 4;
 
@@ -18,7 +15,7 @@ namespace FactoryHomework
 
         public void Initialize()
         {
-            _factory = new Factory<Car>(_prototype, transform);
+            _factory = new Factory<Car, CarArgs>(_prototype, transform);
             CreatePool();
         }
 
@@ -28,12 +25,11 @@ namespace FactoryHomework
 
             for (int i = 0; i < _maxCount; i++)
             {
-                var color = ColorRandomiser.GetRandomColor();
-                cars[i] = _factory.Create();
+                var color = Random.ColorHSV();
+                cars[i] = _factory.Create(new CarArgs(color));
             }
 
             _pool = new Pool<Car>(cars);
-             
         }
         
 

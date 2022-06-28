@@ -1,4 +1,4 @@
-﻿public interface IInitializable
+﻿public interface IInitializable<V>
 {
-    void Initialize();
+    void Initialize(V args);
 }

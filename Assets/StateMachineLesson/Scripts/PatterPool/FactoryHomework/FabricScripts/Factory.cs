@@ -2,7 +2,7 @@
 
 namespace FactoryHomework
 {
-    public class Factory<T> where T: MonoBehaviour, IInitializable
+    public class Factory<T, V> where T : MonoBehaviour, IInitializable<V>
     {
         private T _prototype;
         private Transform _root;
@@ -13,10 +13,10 @@ namespace FactoryHomework
             _root = root;
         }
 
-        public T Create()
+        public T Create(V args)
         {
             var instance = GameObject.Instantiate(_prototype, _root);
-            instance.Initialize();
+            instance.Initialize(args);
 
             return instance;
         }
