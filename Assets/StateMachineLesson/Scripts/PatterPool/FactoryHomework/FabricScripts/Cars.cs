@@ -10,6 +10,7 @@ namespace FactoryHomework
         private Factory<Car, CarArgs> _factory;
         [SerializeField] private int _minYposition = -4;
         [SerializeField] private int _maxYposition = 4;
+        [SerializeField] private int _startPositionX;
 
         private Pool<Car> _pool;
 
@@ -36,10 +37,18 @@ namespace FactoryHomework
         public void Spawn()
         {
             var speed = Random.Range(1, 5);
+            
             var positionYCar = Random.Range(_minYposition, _maxYposition);
 
             var car = _pool.Get();
-            car.OnStart(speed, positionYCar);
+            car.OnColisionFinish+=Disaven;
+            car.OnStart(speed,_startPositionX, positionYCar);
+        }
+        private void Disaven(Car car)
+        {
+            _pool.Push(car);
+            Spawn();
+            car.OnColisionFinish -= Disaven;
         }
     }
 }

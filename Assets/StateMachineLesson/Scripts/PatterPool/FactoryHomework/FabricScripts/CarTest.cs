@@ -19,6 +19,14 @@ namespace FactoryHomework
             _cars.Spawn();
             _cars.Spawn();
             _cars.Spawn();
+            _cars.Spawn();
+            _cars.Spawn();
+            _cars.Spawn();
+            _cars.Spawn();
+            _cars.Spawn();
+            _cars.Spawn();
+            _cars.Spawn();
+            
         }
     }
 }
